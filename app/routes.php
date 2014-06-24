@@ -15,6 +15,10 @@
 // {
 // 	return View::make('hello');
 // });
-Route::get('/', 'HomeController@showWelcome');
+// Route::get('/', 'HomeController@showWelcome');
 
-Route::controller('leadtype', 'LeadTypeController');
+Route::get('/', 'HomeController@getIndex');
+
+Route::resource('contact', 'ContactController');
+
+// Route::controller('leadtype', 'LeadTypeController');
