@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>Sales Lead</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}}" rel="stylesheet">
@@ -38,7 +38,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Sales Lead</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -47,7 +47,7 @@
             </li>
             <li><a href="#about">About</a></li>
             <li>
-              {{ HTML::link('contact','Contants') }}
+              {{ HTML::link('contacts','Contants') }}
              <!--  <a href="#contact">Contact</a> -->
             </li>
             <li class="dropdown">
@@ -84,5 +84,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="{{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}}"></script>
+
+    <script src="{{{ asset('assets/js/sl.js') }}}"></script>
   </body>
 </html>

@@ -19,6 +19,8 @@
 
 Route::get('/', 'HomeController@getIndex');
 
-Route::resource('contact', 'ContactController');
+Route::resource('contacts', 'ContactsController');
+
+Route::get('phonetypes/json', 'PhoneTypesController@Json');
 
 // Route::controller('leadtype', 'LeadTypeController');

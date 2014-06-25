@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeadTypesTable extends Migration {
+class CreatePhoneTypesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateLeadTypesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lead_types', function($table)
-    {
-       $table->increments('id');
-			$table->string('lead_type');
-    });
+		Schema::create('phone_types',function($t)
+		{
+			$t->increments('id');
+			$t->string('phone_type');
+		});
 	}
 
 	/**
@@ -26,7 +26,7 @@ class CreateLeadTypesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('lead_types');
+		Schema::drop('phone_types');
 	}
 
 }
