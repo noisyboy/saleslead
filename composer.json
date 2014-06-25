@@ -4,8 +4,7 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*",
-		"jacopo/laravel-authentication-acl": "1.1.2"
+		"laravel/framework": "4.2.*"
 	},
 	"autoload": {
 		"classmap": [
