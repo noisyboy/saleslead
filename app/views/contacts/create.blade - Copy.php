@@ -44,7 +44,50 @@
 			{{ Form::text('title', '', array('class' => 'form-control', 'placeholder' => 'Title')) }}
 		</div>
 	</div>
+	<div id="phone-wrapper">
+		<div class="form-group">
+			<label class="col-sm-2 text-right">
+				<a class="btn btn-success" id="add-phone" href="#">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>
+			</label>
+			<div class="col-sm-5">
+				<!-- {{ Form::select('phonetype[]', $phonetypes,'', array('class' => 'form-control')) }} -->
+			</div>
+			<div class="col-sm-5">
+				<!-- {{ Form::text('phone[]', '', array('class' => 'form-control', 'placeholder' => 'Add Phone')) }} -->
+			</div>	
+		</div>
+	</div>
+	<div id="email-wrapper">
+		<div class="form-group">
+			<label class="col-sm-2 text-right">
+				<a class="btn btn-success" id="add-email" href="#">
+					<span class="glyphicon glyphicon-plus"></span>
+				</a>
+			</label>
+			<div class="col-sm-10">
+				{{ Form::text('email[0]', '', array('class' => 'form-control', 'placeholder' => 'Add Email')) }}
+			</div>
+		</div>
+	@if(Session::get('emails'))
+		@foreach (Session::get('emails') as $key => $row)
+		@if($key != 0)
+		<div class="form-group">
+			<label class="col-sm-2 text-right">
+				<a class="btn btn-danger remove-email" id="add-email" href="#">
+					<span class="glyphicon glyphicon-minus"></span>
+				</a>
+			</label>
+			<div class="col-sm-10">
+				<input class="form-control" type="text" value="{{ $row }}" name="email[{{ $key }}]" placeholder="Add Email">
+			</div>
+		</div>
+		@endif
+		@endforeach
+	@endif
 
+	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			{{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}

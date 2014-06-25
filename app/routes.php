@@ -23,4 +23,8 @@ Route::resource('contacts', 'ContactsController');
 
 Route::get('phonetypes/json', 'PhoneTypesController@Json');
 
+Route::post('phones', 'PhonesController@store');
+
+Route::post('emails', 'EmailsController@store');
+
 // Route::controller('leadtype', 'LeadTypeController');

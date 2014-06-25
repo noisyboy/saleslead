@@ -35,4 +35,34 @@ $(document).ready(function(){
 		return false;
 	});
 //--------------------------------------------------------
+	// contact
+	$("#phone-modal input#submit").click(function(){
+        $.ajax({
+            type: "POST",
+            url: "../phones", 
+            data: $('form.contact-phone').serialize(),
+            success: function(msg){
+                $("#phone-modal").modal('hide'); //hide popup 
+                location.reload();
+            },
+            error: function(){
+                alert("failure");
+            }
+        });
+    });
+
+    $("#email-modal input#submit").click(function(){
+        $.ajax({
+            type: "POST",
+            url: "../emails", 
+            data: $('form.contact-email').serialize(),
+            success: function(msg){
+                $("#email-modal").modal('hide'); //hide popup 
+                location.reload();
+            },
+            error: function(){
+                alert("failure");
+            }
+        });
+    });
 });

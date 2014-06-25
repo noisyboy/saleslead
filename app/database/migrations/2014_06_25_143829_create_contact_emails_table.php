@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContactPhonesTable extends Migration {
+class CreateContactEmailsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,10 @@ class CreateContactPhonesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('phones', function($t)
-		{
+		Schema::create('emails', function($t){
 			$t->increments('id');
-			$t->string('phone',100);
-			$t->integer('phone_type_id')->unsigned();
+			$t->string('email',100);
 			$t->integer('contact_id')->unsigned();
-			$t->foreign('phone_type_id')
-				->references('id')->on('phone_types');
 			$t->foreign('contact_id')
 				->references('id')->on('contacts');
 		});
@@ -32,7 +28,7 @@ class CreateContactPhonesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('phones');
+		Schema::drop('emails');
 	}
 
 }

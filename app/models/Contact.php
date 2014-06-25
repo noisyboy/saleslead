@@ -18,4 +18,9 @@ class Contact extends Eloquent {
 	{
 		return $this->hasMany('Phone');
 	}
+
+	public function emails()
+	{
+		return $this->hasMany('Email');
+	}
 }

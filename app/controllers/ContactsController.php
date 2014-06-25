@@ -14,9 +14,8 @@ class ContactsController extends BaseController {
 	 */
 	public function index()
 	{
-		// $contacts = Contact::all();
-		// $this->layout->content = View::make('contacts.index',compact('contacts'));\
-		$this->layout->content = View::make('contacts.index');
+		$contacts = Contact::all();
+		$this->layout->content = View::make('contacts.index',compact('contacts'));
 	}
 
 
@@ -27,11 +26,7 @@ class ContactsController extends BaseController {
 	 */
 	public function create()
 	{
-		foreach (PhoneType::select('id', 'phone_type')->orderBy('id','asc')->get() as $phonetype)
-		{
-			$phonetypes[$phonetype->id] = $phonetype->phone_type;
-		}
-		$this->layout->content = View::make('contacts.create',compact('phonetypes'));
+		$this->layout->content = View::make('contacts.create');
 	}
 
 
@@ -42,30 +37,21 @@ class ContactsController extends BaseController {
 	 */
 	public function store()
 	{
-		// $input = Input::only('company_name', 'address','first_name','middle_name','last_name','title');
-
-		$rules = array(
-			'company_name' => 'required',
-			'address' => 'required',
-			'first_name' => 'required',
-			'middle_name' => 'required',
-			'last_name' => 'required',
-			'title' => 'required'
-		);
-
-		$validation = Validator::make(Input::all(),$rules);
+		$input = Input::only('company_name', 'address','first_name','middle_name','last_name','title');
+		$validation = Validator::make($input, Contact::$rules);
 
 		if($validation->passes())
 		{
 			$contact = Contact::create($input);
-			
-			return Redirect::route('contacts.index');
+			// return Redirect::route('contacts.index');
+			// redirect
+			Session::flash('message', 'Successfully created contact!');
+			return Redirect::route('contacts.show',array($contact->id));
 		}else
 		{
 			return Redirect::route('contacts.create')
 				->withInput()
-				->withErrors($validation)
-				->with('emails', Input::get('email'));
+				->withErrors($validation);
 		}
 	}
 
@@ -78,7 +64,14 @@ class ContactsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		// $contact = Contact::find($id);
+		$contact = Contact::with('phones.phone_type')->with('emails')->find($id);;
+
+		foreach (PhoneType::select('id', 'phone_type')->orderBy('id','asc')->get() as $phonetype)
+		{
+			$phonetypes[$phonetype->id] = $phonetype->phone_type;
+		}
+		$this->layout->content = View::make('contacts.show',compact('contact','phonetypes'));
 	}
 
 
