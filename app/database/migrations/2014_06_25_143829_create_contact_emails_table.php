@@ -28,6 +28,9 @@ class CreateContactEmailsTable extends Migration {
 	 */
 	public function down()
 	{
+		Schema::table('emails', function($t){
+			$t->dropForeign('emails_contact_id_foreign');
+		});
 		Schema::drop('emails');
 	}
 

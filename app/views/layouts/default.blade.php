@@ -13,6 +13,9 @@
     <!-- Bootstrap core CSS -->
     <link href="{{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}}" rel="stylesheet">
 
+     <!-- Typeahead CSS -->
+    <link href="{{{ asset('assets/plugins/typeahead/css/typeahead.css') }}}" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="{{{ asset('assets/css/saleslead.css') }}}" rel="stylesheet">
 
@@ -43,18 +46,16 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="#">Home</a>
+              {{ HTML::link('/','Home') }}
             </li>
-            <li><a href="#about">About</a></li>
-            <li>
-              {{ HTML::link('contacts','Contants') }}
-             <!--  <a href="#contact">Contact</a> -->
-            </li>
+            <li>{{ HTML::link('projects','Projects') }}</li>
+            <li>{{ HTML::link('contacts','Contants') }}</li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maintenance <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
+                <li>{{ HTML::link('areas', 'Areas') }}</li>
+                <li>{{ HTML::link('regions', 'Regions') }}</li>
+                <li>{{ HTML::link('contractorgroups', 'Contractors Groups') }}</li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
@@ -82,9 +83,16 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="{{{ asset('assets/plugins/jquery/jquery-2.1.1.min.js') }}}"></script>
     <script src="{{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}}"></script>
 
+    <script src="{{{ asset('assets/plugins/bootstrap/js/tooltip.js') }}}"></script>
+    <script src="{{{ asset('assets/plugins/bootstrap/js/popover.js') }}}"></script>
+
+    <script src="{{{ asset('assets/plugins/typeahead/js/handlebars.js') }}}"></script>  
+    <script src="{{{ asset('assets/plugins/typeahead/js/typeahead.bundle.min.js') }}}"></script>    
+
+    <script src="{{{ asset('assets/js/function.js') }}}"></script>
     <script src="{{{ asset('assets/js/sl.js') }}}"></script>
   </body>
 </html>

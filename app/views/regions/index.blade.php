@@ -1,27 +1,29 @@
 @section('content')
 
-{{ HTML::linkRoute('contacts.create', 'New Contact', array(), array('class' => 'btn btn-primary')) }}
+{{ HTML::linkRoute('regions.create', 'New Region', array(), array('class' => 'btn btn-primary')) }}
 
 <div class="widget widget-table action-table">
 	<div class="widget-header"> <i class="icon-th-list"></i>
-	  	<h3>Contacts</h3>
+	  	<h3>Regions</h3>
 	</div>
 	<!-- /widget-header -->
 	<div class="widget-content">
 	  	<table class="table table-striped table-bordered">
 			<thead>
 			  	<tr>
-					<th>Contact Person</th>
-					<th>Company Name</th>
+					<th>Region</th>
+					<th>Area</th>
 			  	</tr>
 			</thead>
 			<tbody>
-				@foreach($contacts as $contact)
+				@foreach($regions as $region)
 			  	<tr>
 					<td>
-						{{ HTML::linkRoute('contacts.show', $contact->first_name .' '. $contact->middle_name .' '. $contact->last_name, $contact->id ) }}
+						{{ HTML::linkRoute('regions.show', $region->region, $region->id ) }}
 					</td>
-					<td>{{ $contact->company_name }}</td>
+					<td>
+						{{ $region->area }}
+					</td>
 			  	</tr>
 			  	@endforeach
 			</tbody>

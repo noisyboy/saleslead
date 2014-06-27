@@ -24,11 +24,17 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
+// $env = $app->detectEnvironment(array(
 
-	'local' => array('homestead'),
+// 	'local' => array('homestead,localhost,127.0.0.1,saleslead'),
+// 	'production' => array('http://rencie.chasetech.com/'),
 
-));
+// ));
+
+	$env = $app->detectEnvironment(function ()
+	{
+	    return require __DIR__.'/environment.php';
+	});
 
 /*
 |--------------------------------------------------------------------------

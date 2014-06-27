@@ -19,12 +19,24 @@
 
 Route::get('/', 'HomeController@getIndex');
 
+// Route group for API versioning
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::get('area_regions/{id}', 'api\RegionsController@area_regions');
+    Route::get('contacts/{id}','api\ContactsController@search_contact');
+});
+
+
 Route::resource('contacts', 'ContactsController');
+Route::resource('projects', 'ProjectsController');
+Route::resource('areas', 'AreasController');
+Route::resource('regions', 'RegionsController');
+Route::resource('contractorgroups','ContractorGroupsController');
 
 Route::get('phonetypes/json', 'PhoneTypesController@Json');
 
 Route::post('phones', 'PhonesController@store');
-
 Route::post('emails', 'EmailsController@store');
+
 
 // Route::controller('leadtype', 'LeadTypeController');

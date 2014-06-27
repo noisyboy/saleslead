@@ -37,32 +37,65 @@ $(document).ready(function(){
 //--------------------------------------------------------
 	// contact
 	$("#phone-modal input#submit").click(function(){
-        $.ajax({
-            type: "POST",
-            url: "../phones", 
-            data: $('form.contact-phone').serialize(),
-            success: function(msg){
-                $("#phone-modal").modal('hide'); //hide popup 
-                location.reload();
-            },
-            error: function(){
-                alert("failure");
-            }
-        });
-    });
+		$.ajax({
+			type: "POST",
+			url: "../phones", 
+			data: $('form.contact-phone').serialize(),
+			success: function(msg){
+				$("#phone-modal").modal('hide'); //hide popup 
+				location.reload();
+			},
+			error: function(){
+				alert("failure");
+			}
+		});
+	});
 
-    $("#email-modal input#submit").click(function(){
-        $.ajax({
-            type: "POST",
-            url: "../emails", 
-            data: $('form.contact-email').serialize(),
-            success: function(msg){
-                $("#email-modal").modal('hide'); //hide popup 
-                location.reload();
-            },
-            error: function(){
-                alert("failure");
-            }
-        });
-    });
+	$("#email-modal input#submit").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "../emails", 
+			data: $('form.contact-email').serialize(),
+			success: function(msg){
+				$("#email-modal").modal('hide'); //hide popup 
+				location.reload();
+			},
+			error: function(){
+				alert("failure");
+			}
+		});
+	});
+//--------------------------------------------------------
+	// projectst
+	$('#area-select select#area_id').select_chain('#region-select select#region_id','/api/v1/area_regions/','SELECT REGION');
+
+ 	$('#popover').popover({ 
+	    html : true,
+	    content: function() {
+	      return $("#popover-content").html();
+	    }
+	});
+
+	// typeahead auto complete for adding contact
+	
+	var contacts = new Bloodhound({
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		remote: '../api/v1/contacts/%QUERY'
+	});
+	 
+	contacts.initialize();
+	 
+	$('.typeahead').typeahead(null, {
+		name: 'fullname',
+		displayKey: 'first_name',
+		source: contacts.ttAdapter(),
+		templates: {
+			suggestion: Handlebars.compile([
+			'<p class="repo-language">{{title}}</p>',
+			'<p class="repo-name">{{first_name}}</p>',
+			'<p class="repo-description">{{company_name}}</p>'
+			].join(''))
+		} 
+	});
 });

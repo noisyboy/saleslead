@@ -12,6 +12,10 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		// $this->call('UserTableSeeder');
+
+		$this->call('PhoneTypeTableSeeder');
+
+        $this->command->info('Phone Type table seeded!');
 	}
 
 }
