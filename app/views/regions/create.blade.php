@@ -1,5 +1,5 @@
 @section('content')
-<h1>New Region</h1>
+<h1 class="page-header">New Region</h1>
 
 @if ($errors->any())
     <ul>

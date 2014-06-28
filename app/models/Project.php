@@ -11,4 +11,9 @@ class Project extends Eloquent {
 		'area_id' => 'required',
 		'region_id' => 'required'
 	);
+
+	public function contacts()
+	{
+		return $this->belongsToMany('Contact','project_contacts')->withPivot('contractor_group_id');
+	}
 }

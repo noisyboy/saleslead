@@ -4,6 +4,10 @@ body {
 }
 
 
+.page-header-button {
+    margin-bottom: 20px;
+}
+
 /*project details*/
 .sidebar-contacts{
 	border-color: #e7e7e7;
@@ -85,6 +89,7 @@ body {
     color: #999999;
     text-align: center;
     vertical-align: top;
+    
 }
 .call-btn {
     font-weight: normal;

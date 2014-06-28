@@ -1,5 +1,5 @@
 @section('content')
-<h1>{{ $contact->company_name }}</h1>
+<h1 class="page-header">{{ $contact->company_name }}</h1>
 
 <div class="form-group">
 	<button class="btn btn-primary" data-toggle="modal" data-target="#phone-modal">

@@ -3,11 +3,6 @@
 class ContactsController extends BaseController {
 
 	/**
-	 * The layout that should be used for responses.
-	 */
-	protected $layout = 'layouts.default';
-
-	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -66,7 +61,7 @@ class ContactsController extends BaseController {
 	public function show($id)
 	{
 		// $contact = Contact::find($id);
-		$contact = Contact::with('phones.phone_type')->with('emails')->find($id);
+		$contact = Contact::with('phones')->with('emails')->find($id);
 
 		foreach (PhoneType::select('id', 'phone_type')->orderBy('id','asc')->get() as $phonetype)
 		{

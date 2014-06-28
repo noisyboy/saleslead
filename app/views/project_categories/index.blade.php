@@ -1,8 +1,8 @@
 @section('content')
-<h1 class="page-header">Areas</h1>
+<h1 class="page-header">Project Categories</h1>
 
 <div class="page-header-button">
-	{{ HTML::linkRoute('areas.create', 'New Area', array(), array('class' => 'btn btn-primary')) }}
+	{{ HTML::linkRoute('projectcategories.create', 'New Project Category', array(), array('class' => 'btn btn-primary')) }}
 </div>
 
 <div class="widget widget-table action-table">
@@ -11,14 +11,14 @@
 	  	<table class="table table-striped table-bordered">
 			<thead>
 			  	<tr>
-					<th>Area</th>
+					<th>Project Categories</th>
 			  	</tr>
 			</thead>
 			<tbody>
-				@foreach($areas as $area)
+				@foreach($project_categories as $project_category)
 			  	<tr>
 					<td>
-						{{ HTML::linkRoute('areas.show', $area->area, $area->id ) }}
+						{{ HTML::linkRoute('projectcategories.show', $project_category->project_category, $project_category->id ) }}
 					</td>
 			  	</tr>
 			  	@endforeach

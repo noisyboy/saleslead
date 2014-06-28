@@ -1,7 +1,6 @@
 <?php
 
-class RegionsController extends \BaseController {
-	
+class ProjectClassificationsController extends \BaseController {
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,14 +8,8 @@ class RegionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		// $regions = Region::all();
-		// $regions = Region::with('area')->get();
-		// $regions = DB::select('select regions.id ,regions.region, areas.area from regions join areas on areas.id = regions.area_id');
-		$regions = DB::table('regions')
-			->join('areas', 'areas.id', '=', 'regions.area_id')
-			->select('regions.id', 'regions.region', 'areas.area')
-			->get();
-		$this->layout->content = View::make('regions.index',compact('regions'));
+		$p_classifications = ProjectClassification::all();
+		$this->layout->content =  View::make('project_classifications.index',compact('p_classifications'));
 	}
 
 
@@ -27,11 +20,7 @@ class RegionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		foreach (Area::select('id', 'area')->orderBy('id','asc')->get() as $area)
-		{
-			$areas[$area->id] = $area->area;
-		}
-		$this->layout->content = View::make('regions.create',compact('areas'));
+		$this->layout->content = View::make('project_classifications.create');
 	}
 
 
@@ -42,20 +31,20 @@ class RegionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('region','area_id');
-		$validation = Validator::make($input, Region::$rules);
+		$input = Input::only('project_classification');
+		$validation = Validator::make($input, ProjectClassification::$rules);
 
 		if($validation->passes())
 		{
-			Region::create($input);
-			Session::flash('message', 'Successfully created region!');
-			return Redirect::route('regions.index');
+			ProjectClassification::create($input);
+			Session::flash('message', 'Successfully created project classification!');
+			return Redirect::route('projectclassifications.index');
 		}else
 		{
-			return Redirect::route('regions.create')
+			return Redirect::route('projectclassifications.create')
 				->withInput()
 				->withErrors($validation);
-		}//
+		}
 	}
 
 

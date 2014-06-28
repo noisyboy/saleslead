@@ -1,11 +1,7 @@
 <?php
 
 class ProjectsController extends BaseController {
-	/**
-	 * The layout that should be used for responses.
-	 */
-	protected $layout = 'layouts.default';
-
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -49,7 +45,7 @@ class ProjectsController extends BaseController {
 			$project = Project::create($input);
 			// return Redirect::route('contacts.index');
 			// redirect
-			Session::flash('message', 'Successfully created contact!');
+			Session::flash('message', 'Successfully created project!');
 			return Redirect::route('projects.show',array($project->id));
 		}else
 		{
@@ -68,31 +64,11 @@ class ProjectsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$c_groups = ContractorGroup::all();
+		$c_groups = ContractorGroup::orderBy('contractor_group')->get();
 		$project = Project::find($id);
-
-		foreach ($c_groups as $group) 
-		{	
-			$contact_list = ProjectContact::where('project_id',$id)
-					->where('contractor_group_id',$group->id)
-					->join('contacts', 'contact_id', '=', 'contacts.id')
-					->get();
-
-			if($contact_list)
-			{
-				foreach ($contact_list as $key => $person) {
-					// echo $person->contact_id;
-					$contact_list[$key]['c_list'] = Contact::with('phones.phone_type')->with('emails')->find($person->contact_id);
-				}
-				
-			}
-			$project_contacts[$group->id] = (object) array(
-				'group' => $group->contractor_group, 
-				'contacts_list' => (object) array('contacts' => $contact_list) 
-				);
-		}
-
-		$this->layout->content = View::make('projects.show',compact('project','project_contacts'));
+		$project_contacts = $project->contacts;
+		
+		$this->layout->content = View::make('projects.show',compact('c_groups','project','project_contacts'));
 	}
 
 

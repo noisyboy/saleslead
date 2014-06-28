@@ -32,6 +32,8 @@ Route::resource('projects', 'ProjectsController');
 Route::resource('areas', 'AreasController');
 Route::resource('regions', 'RegionsController');
 Route::resource('contractorgroups','ContractorGroupsController');
+Route::resource('projectclassifications','ProjectClassificationsController');
+Route::resource('projectcategories','ProjectCategoriesController');
 
 Route::get('phonetypes/json', 'PhoneTypesController@Json');
 

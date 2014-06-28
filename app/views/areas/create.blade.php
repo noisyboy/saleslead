@@ -1,5 +1,5 @@
 @section('content')
-<h1>New Area</h1>
+<h1 class="page-header">New Area</h1>
 
 @if ($errors->any())
 <div class="col-md-offset-2 alert alert-danger " >

@@ -1,5 +1,5 @@
 @section('content')
-<h1>New Contractor Group</h1>
+<h1 class="page-header">New Contractor Group</h1>
 
 @if ($errors->any())
     <ul>

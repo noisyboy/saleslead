@@ -1,11 +1,11 @@
 @section('content')
+<h1 class="page-header">Contacts</h1>
 
-{{ HTML::linkRoute('contacts.create', 'New Contact', array(), array('class' => 'btn btn-primary')) }}
+<div class="page-header-button">
+	{{ HTML::linkRoute('contacts.create', 'New Contact', array(), array('class' => 'btn btn-primary')) }}
+</div>
 
 <div class="widget widget-table action-table">
-	<div class="widget-header"> <i class="icon-th-list"></i>
-	  	<h3>Contacts</h3>
-	</div>
 	<!-- /widget-header -->
 	<div class="widget-content">
 	  	<table class="table table-striped table-bordered">

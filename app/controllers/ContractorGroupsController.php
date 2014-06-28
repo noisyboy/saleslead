@@ -3,12 +3,6 @@
 class ContractorGroupsController extends \BaseController {
 
 	/**
-	 * The layout that should be used for responses.
-	 */
-	protected $layout = 'layouts.default';
-
-
-	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response

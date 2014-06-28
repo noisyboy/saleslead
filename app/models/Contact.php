@@ -16,11 +16,16 @@ class Contact extends Eloquent {
 
 	public function phones()
 	{
-		return $this->hasMany('Phone');
+		return $this->hasMany('Phone')->with('phone_type');
 	}
 
 	public function emails()
 	{
 		return $this->hasMany('Email');
+	}
+
+	public function projects()
+	{
+		return $this->belongsToMany('Projects','project_contacts')->withPivot('contractor_group_id');
 	}
 }

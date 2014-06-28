@@ -15,7 +15,14 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('PhoneTypeTableSeeder');
 
-        $this->command->info('Phone Type table seeded!');
+        $this->command->info('Phone Types table seeded!');
+
+        $this->call('ProjectClassificationSeeder');
+
+        $this->command->info('Project Classifications table seeded!');
+
 	}
+
+
 
 }

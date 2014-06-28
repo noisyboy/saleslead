@@ -1,11 +1,12 @@
 @section('content')
+<h1 class="page-header">Contractor Groups</h1>
 
-{{ HTML::linkRoute('contractorgroups.create', 'New Contractor Group', array(), array('class' => 'btn btn-primary')) }}
+<div class="page-header-button">
+	{{ HTML::linkRoute('contractorgroups.create', 'New Contractor Group', array(), array('class' => 'btn btn-primary')) }}
+</div>
 
 <div class="widget widget-table action-table">
-	<div class="widget-header"> <i class="icon-th-list"></i>
-	  	<h3>Contractor Groups</h3>
-	</div>
+
 	<!-- /widget-header -->
 	<div class="widget-content">
 	  	<table class="table table-striped table-bordered">

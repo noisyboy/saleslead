@@ -56,6 +56,8 @@
                 <li>{{ HTML::link('areas', 'Areas') }}</li>
                 <li>{{ HTML::link('regions', 'Regions') }}</li>
                 <li>{{ HTML::link('contractorgroups', 'Contractors Groups') }}</li>
+                <li>{{ HTML::link('projectclassifications','Project Classifications') }}</li>
+                <li>{{ HTML::link('projectcategories','Project Categories') }}</li>
                 <li><a href="#">Something else here</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>

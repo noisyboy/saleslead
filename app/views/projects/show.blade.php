@@ -1,14 +1,8 @@
 @section('content')
-<h1>{{ $project->project_name }}</h1>
-<div class="row">
-	<div class="col-md-3">
+<h1 class="page-header">{{ $project->project_name }}</h1>
 
-		<h2>Heading</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		<p>
-			<a class="btn btn-default" role="button" href="#">View details »</a>
-		</p>
-	</div>
+<div class="row">
+	@include('projects.partials.details')
 
 	<div class="col-md-5">
 		<h2>Heading</h2>
@@ -19,12 +13,11 @@
 	</div>
 
 	<div class="col-md-4">
-
-		@foreach($project_contacts as $c_group)
+		@foreach($c_groups as $c_group)
 		<div class="sidebar-contacts sidebar-section">
 			<header class="sidebar-heading">
 				<!-- <input class="form-control typeahead" type="text" placeholder="Add Contact"> -->
-				<h6>{{ strtoupper( $c_group->group )}}</h6>
+				<h6>{{ strtoupper( $c_group->contractor_group )}}</h6>
 				<a id="popover" class="add-contact-sidebar" href="#" data-placement="left">
 					<span class="glyphicon glyphicon-plus"></span>
 				</a>
@@ -35,35 +28,37 @@
 				  </form>
 				</div>
 			</header>
-			@if( count($c_group->contacts_list->contacts) > 0)
+			
 			<ul class="sidebar-box-list contact-list">
-				@foreach($c_group->contacts_list->contacts as $contacts)
+				<?php $with_contact = false;?>
+			@foreach($project_contacts as $project_contact)
+
+				@if($project_contact->pivot->contractor_group_id == $c_group->id)
+				<?php $with_contact = true;?>
 				<li>
-				</pre>
 					<div class="check-input">
 						<span class="glyphicon glyphicon-user"></span>
 					</div>
 					<div>
 						<p>
 							<a class="sidebar-title-link sidebar-contact-name" href="#">
-								<strong>{{ ucwords(strtolower($contacts->first_name)) .' '. ucwords(strtolower($contacts->middle_name)) . ' ' .ucwords(strtolower($contacts->last_name))}}</strong>
+								<strong>{{ ucwords(strtolower($project_contact->first_name.' '.$project_contact->middle_name.' '.$project_contact->last_name)) }}</strong>
 							</a>
 						</p>
 						<p>
-							<span class="sidebar-contact-address">{{ $contacts->address }}</span>
+							<span class="sidebar-contact-address"></span>
 							<!-- <br>
 							<span class="sidebar-contact-address">Chicago</span>,
 							<span class="sidebar-contact-address">IL</span> -->
 						</p>
-						@foreach($contacts->c_list->phones as $phone)
 						
+						@foreach($project_contact->phones as $phone)
 						<p>
-							
 							<span class="sidebar-contact-phone">
 								<span>
 								<a class="call-btn contact-btn btn-mini" href="callto:+18009409650">
 								<span class="glyphicon glyphicon-earphone"></span>
-								{{ $phone->phone }}
+								+ {{ $phone->phone }}
 								</a>
 								</span>
 							</span>
@@ -72,15 +67,13 @@
 						</p>
 						@endforeach
 						<br>
-						@foreach($contacts->c_list->emails as $email)
-						
+						@foreach($project_contact->emails as $email)
 						<p>
-							
-							<span class="sidebar-contact-phone">
+							<span class="sidebar-contact-email">
 								<span>
 								<a class="call-btn contact-btn btn-mini" href="callto:+18009409650">
-								<span class="glyphicon glyphicon-earphone"></span>
-								{{ $email->email }}
+									<span class="glyphicon glyphicon-earphone"></span>
+									{{ $email->email }}
 								</a>
 								</span>
 							</span>
@@ -89,9 +82,10 @@
 						@endforeach
 					</div>
 				</li>
-				@endforeach
+				@endif
+			@endforeach
 			</ul>
-			@else
+			@if(!$with_contact)
 			<div class="emptyRepository">
 				<div class="empty-info">
 					<div class="empty-text">No Developer</div>
