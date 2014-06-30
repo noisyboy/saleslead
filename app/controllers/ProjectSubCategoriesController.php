@@ -1,7 +1,7 @@
 <?php
 
-class RegionsController extends \BaseController {
-	
+class ProjectSubCategoriesController extends \BaseController {
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,8 +9,8 @@ class RegionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$regions = Region::with('area')->get();
-		$this->layout->content = View::make('regions.index',compact('regions'));
+		$p_sub_categories = ProjectSubCategory::with('project_category')->get();
+		$this->layout->content = View::make('project_sub_categories.index',compact('p_sub_categories'));
 	}
 
 
@@ -21,11 +21,11 @@ class RegionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		foreach (Area::select('id', 'area')->orderBy('id','asc')->get() as $area)
+		foreach (ProjectCategory::select('id', 'project_category')->orderBy('project_category','asc')->get() as $project_category)
 		{
-			$areas[$area->id] = $area->area;
+			$project_categories[$project_category->id] = $project_category->project_category;
 		}
-		$this->layout->content = View::make('regions.create',compact('areas'));
+		$this->layout->content = View::make('project_sub_categories.create',compact('project_categories'));
 	}
 
 
@@ -36,17 +36,17 @@ class RegionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('region','area_id');
-		$validation = Validator::make($input, Region::$rules);
+		$input = Input::only('project_category_id','project_sub_category');
+		$validation = Validator::make($input, ProjectSubCategory::$rules);
 
 		if($validation->passes())
 		{
-			Region::create($input);
-			Session::flash('message', 'Successfully created region!');
-			return Redirect::route('regions.index');
+			ProjectSubCategory::create($input);
+			Session::flash('message', 'Successfully created project sub category!');
+			return Redirect::route('projectsubcategories.index');
 		}else
 		{
-			return Redirect::route('regions.create')
+			return Redirect::route('projectsubcategories.create')
 				->withInput()
 				->withErrors($validation);
 		}//

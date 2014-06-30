@@ -2,7 +2,6 @@
 
 class Region extends Eloquent {
 
-	protected $guarded = array('id');
 	protected $fillable = array('region','area_id');
 	public $timestamps = false;
 

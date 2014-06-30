@@ -2,7 +2,6 @@
 
 class Area extends Eloquent {
 
-	protected $guarded = array('id');
 	protected $fillable = array('area');
 	public $timestamps = false;
 

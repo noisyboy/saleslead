@@ -37,9 +37,9 @@ class ProjectCategoriesController extends \BaseController {
 
 		if($validation->passes())
 		{
-			ProjectCategory::create($input);
+			$p_category = ProjectCategory::create($input);
 			Session::flash('message', 'Successfully created project category!');
-			return Redirect::route('projectcategories.index');
+			return Redirect::route('projectcategories.show',array($p_category->id));
 		}else
 		{
 			return Redirect::route('projectcategories.create')
@@ -57,7 +57,8 @@ class ProjectCategoriesController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$p_category = ProjectCategory::find($id);
+		$this->layout->content = View::make('project_categories.show',compact('p_category'));
 	}
 
 

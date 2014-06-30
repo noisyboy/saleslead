@@ -16,6 +16,9 @@
      <!-- Typeahead CSS -->
     <link href="{{{ asset('assets/plugins/typeahead/css/typeahead.css') }}}" rel="stylesheet">
 
+     <!-- font-font-awesome CSS -->
+    <link href="{{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}}" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="{{{ asset('assets/css/saleslead.css') }}}" rel="stylesheet">
 
@@ -50,26 +53,28 @@
             </li>
             <li>{{ HTML::link('projects','Projects') }}</li>
             <li>{{ HTML::link('contacts','Contants') }}</li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Maintenance <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li>{{ HTML::link('areas', 'Areas') }}</li>
-                <li>{{ HTML::link('regions', 'Regions') }}</li>
-                <li>{{ HTML::link('contractorgroups', 'Contractors Groups') }}</li>
-                <li>{{ HTML::link('projectclassifications','Project Classifications') }}</li>
-                <li>{{ HTML::link('projectcategories','Project Categories') }}</li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
+            
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="../navbar/">Default</a></li>
             <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+               
+                <li class="divider"></li>
+                <li class="dropdown-header">File Maintenance</li>
+                 <li>{{ HTML::link('areas', 'Areas') }}</li>
+                <li>{{ HTML::link('regions', 'Regions') }}</li>
+                <li>{{ HTML::link('contractorgroups', 'Contractors Groups') }}</li>
+                <li>{{ HTML::link('projectclassifications','Project Classifications') }}</li>
+                <li>{{ HTML::link('projectcategories','Project Categories') }}</li>
+                <li>{{ HTML::link('projectsubcategories','Project Sub Categories') }}</li>
+                <li>{{ HTML::link('projectstages', 'Project Stages') }} </li>
+                <li>{{ HTML::link('projectstatuses', 'Project Statuses') }} </li>
+                <li><a href="#">Something else here</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

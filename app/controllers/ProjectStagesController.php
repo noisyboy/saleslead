@@ -1,7 +1,7 @@
 <?php
 
-class RegionsController extends \BaseController {
-	
+class ProjectStagesController extends \BaseController {
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -9,8 +9,8 @@ class RegionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$regions = Region::with('area')->get();
-		$this->layout->content = View::make('regions.index',compact('regions'));
+		$project_stages = ProjectStage::all();
+		$this->layout->content =  View::make('project_stages.index',compact('project_stages'));
 	}
 
 
@@ -21,11 +21,7 @@ class RegionsController extends \BaseController {
 	 */
 	public function create()
 	{
-		foreach (Area::select('id', 'area')->orderBy('id','asc')->get() as $area)
-		{
-			$areas[$area->id] = $area->area;
-		}
-		$this->layout->content = View::make('regions.create',compact('areas'));
+		$this->layout->content = View::make('project_stages.create');
 	}
 
 
@@ -36,20 +32,20 @@ class RegionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('region','area_id');
-		$validation = Validator::make($input, Region::$rules);
+		$input = Input::only('project_stage','description');
+		$validation = Validator::make($input, ProjectStage::$rules);
 
 		if($validation->passes())
 		{
-			Region::create($input);
-			Session::flash('message', 'Successfully created region!');
-			return Redirect::route('regions.index');
+			ProjectStage::create($input);
+			Session::flash('message', 'Successfully created project stage!');
+			return Redirect::route('projectstages.index');
 		}else
 		{
-			return Redirect::route('regions.create')
+			return Redirect::route('projectstages.create')
 				->withInput()
 				->withErrors($validation);
-		}//
+		}
 	}
 
 

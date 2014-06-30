@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'sl',
-			'username'  => 'root',
-			'password'  => '1234',
+			'database'  => 'chaset7_sl',
+			'username'  => 'chaset7_sluser',
+			'password'  => 'sluser031988',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

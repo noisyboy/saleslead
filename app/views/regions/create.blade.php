@@ -1,11 +1,7 @@
 @section('content')
 <h1 class="page-header">New Region</h1>
 
-@if ($errors->any())
-    <ul>
-        {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-    </ul>
-@endif
+@include('shared.error')
 
 {{ Form::open(array('route' => 'regions.store', 'class' => 'form-horizontal', 'role' => 'form')) }}
 	<div class="form-group">

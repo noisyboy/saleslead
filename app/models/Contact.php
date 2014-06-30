@@ -2,7 +2,6 @@
 
 class Contact extends Eloquent {
 	
-	protected $guarded = array('id');
 	protected $fillable = array('company_name', 'address','first_name','middle_name','last_name','title');
 
 	public static $rules = array(

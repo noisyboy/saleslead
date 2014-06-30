@@ -2,6 +2,7 @@
 <h1 class="page-header">Add Contact</h1>
 
 @if ($errors->any())
+
     <ul>
         {{ implode('', $errors->all('<li class="error">:message</li>')) }}
     </ul>

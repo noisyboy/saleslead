@@ -2,7 +2,6 @@
 
 class Email extends Eloquent {
 
-	protected $guarded = array('id');
 	protected $fillable = array('email','contact_id');
 	public $timestamps = false;
 

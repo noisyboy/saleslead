@@ -140,3 +140,98 @@ p small {
     opacity: 0.4;
     text-align: center;
 }
+
+/*project details*/
+.info-label {
+    color: #888888;
+    font-size: 11px;
+    font-weight: normal;
+}
+.sub-details{
+    font-weight: bold;
+    line-height: 18px;
+    color: #333;
+}
+/*history*/
+.history-list {
+    border: 0 none !important;
+    margin: 0;
+    padding: 0 !important;
+}
+.history-list ul {
+   list-style: none outside none;
+   margin-left: 0px;
+}
+
+.history-items {
+    display: table;
+    margin: 0;
+    padding-left: 0;
+    width: 100%;
+}
+
+.timestamp {
+    color: #888888;
+    font-size: 11px;
+    text-align: right;
+}
+.item-heading .timestamp {
+    float: right;
+    margin: 0;
+}
+.item-heading:after {
+    content: "";
+    display: table;
+}
+
+li.item:before {
+    color: #666666;
+    content: "";
+    font-family: "Base Icons";
+    font-size: 15px;
+    left: 12px;
+    position: absolute;
+}
+li.item.activity:before {
+    content: "";
+    font-family: "FontAwesome";
+}
+.history-list ul li.item {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-color: -moz-use-text-color -moz-use-text-color #e5e5e5;
+    border-image: none;
+    border-style: none none dotted;
+    border-width: medium medium 1px;
+    margin: 0;
+    overflow: visible;
+    padding: 20px 20px 20px 40px;
+    position: relative;
+    transition: all 0.2s ease 0s;
+}
+
+/*comment*/
+.tabbed-action-content {
+    background: none repeat scroll 0 0 #f5f5f5;
+    border: 1px solid #dddddd;
+    border-radius: 0 6px 6px;
+    margin-bottom: 20px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+    background: none repeat scroll 0 0 #f5f5f5;
+}
+.nav-tabs {
+    border-bottom: 0px;
+}
+.nav-tabs > li > a:hover {
+    border: 1px solid #dddddd;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 0px;
+}
+.form-container {
+    padding: 10px 10px 0 10px;
+}

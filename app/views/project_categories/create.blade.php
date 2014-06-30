@@ -1,13 +1,7 @@
 @section('content')
 <h1 class="page-header">New Project Category</h1>
 
-@if ($errors->any())
-<div class="col-md-offset-2 alert alert-danger " >
-    <ul>
-        {{ implode('', $errors->all('<li class="error">:message</li>')) }}
-    </ul>
-</div>
-@endif
+@include('shared.error')
 
 {{ Form::open(array('route' => 'projectcategories.store', 'class' => 'form-horizontal', 'role' => 'form')) }}
 	<div class="form-group">

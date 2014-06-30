@@ -26,7 +26,33 @@ class ProjectsController extends BaseController {
 		{
 			$areas[$area->id] = $area->area;
 		}
-		$this->layout->content = View::make('projects.create',compact('areas'));
+
+		$project_classifications['0'] = 'SELECT CLASSIFICATION';
+		foreach (ProjectClassification::select('id','project_classification')->orderBy('project_classification')->get() as $project_classification) 
+		{
+			$project_classifications[$project_classification->id] = $project_classification->project_classification;
+		}
+
+		$project_categories['0'] = 'SELECT CATEGORY';
+		foreach (ProjectCategory::select('id','project_category')->orderBy('project_category')->get() as $project_category) 
+		{
+			$project_categories[$project_category->id] = $project_category->project_category;
+		}
+
+		$project_stages['0'] = 'SELECT STAGE';
+		foreach (ProjectStage::select('id','project_stage')->orderBy('project_stage')->get() as $project_stage) 
+		{
+			$project_stages[$project_stage->id] = $project_stage->project_stage;
+		}
+
+		$project_statuses['0'] = 'SELECT STAGE';
+		foreach (ProjectStatus::select('id','project_status')->orderBy('project_status')->get() as $project_status) 
+		{
+			$project_statuses[$project_status->id] = $project_status->project_status;
+		}
+
+		$this->layout->content = View::make('projects.create',compact('areas',
+			'project_classifications','project_categories','project_stages','project_statuses'));
 	}
 
 
@@ -37,7 +63,16 @@ class ProjectsController extends BaseController {
 	 */
 	public function store()
 	{
-		$input = Input::only('project_name', 'project_address','area_id','region_id');
+		$input = Input::only('project_name',
+		 	'project_address',
+		 	'area_id',
+		 	'region_id',
+		 	'project_classification_id',
+			'project_category_id',
+			'project_sub_category_id',
+			'project_stage_id',
+			'project_details',
+			'project_status_id');
 		$validation = Validator::make($input, Project::$rules);
 
 		if($validation->passes())
@@ -65,10 +100,17 @@ class ProjectsController extends BaseController {
 	public function show($id)
 	{
 		$c_groups = ContractorGroup::orderBy('contractor_group')->get();
-		$project = Project::find($id);
+		$project = Project::with('project_classification')
+			->with('project_category')
+			->with('project_stage')
+			->with('project_status')
+			->find($id);
 		$project_contacts = $project->contacts;
-		
-		$this->layout->content = View::make('projects.show',compact('c_groups','project','project_contacts'));
+
+		$classificatons = ProjectClassification::all();
+		$categories = ProjectCategory::all();
+		$this->layout->content = View::make('projects.show',compact('c_groups',
+			'project','project_contacts','classificatons','categories'));
 	}
 
 

@@ -2,14 +2,12 @@
 <h1 class="page-header">{{ $project->project_name }}</h1>
 
 <div class="row">
-	@include('projects.partials.details')
+	<div class="col-md-3">
+		@include('projects.partials.details')
+	</div>
 
 	<div class="col-md-5">
-		<h2>Heading</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		<p>
-			<a class="btn btn-default" role="button" href="#">View details »</a>
-		</p>
+		@include('projects.partials.history')
 	</div>
 
 	<div class="col-md-4">
@@ -71,8 +69,8 @@
 						<p>
 							<span class="sidebar-contact-email">
 								<span>
-								<a class="call-btn contact-btn btn-mini" href="callto:+18009409650">
-									<span class="glyphicon glyphicon-earphone"></span>
+								<a class="call-btn contact-btn btn-mini" href="mailto:{{ $email->email }}">
+									<span class="glyphicon glyphicon-envelope"></span>
 									{{ $email->email }}
 								</a>
 								</span>
@@ -88,7 +86,7 @@
 			@if(!$with_contact)
 			<div class="emptyRepository">
 				<div class="empty-info">
-					<div class="empty-text">No Developer</div>
+					<div class="empty-text">No {{ ucwords(strtolower($c_group->contractor_group)) }}</div>
 				</div>
 			</div>
 			@endif

@@ -2,7 +2,6 @@
 
 class Phone extends Eloquent {
 
-	protected $guarded = array('id');
 	protected $fillable = array('phone', 'phone_type_id','contact_id');
 	public $timestamps = false;
 
