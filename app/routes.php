@@ -24,6 +24,7 @@ Route::group(array('prefix' => 'api/v1'), function()
 {
     Route::get('area_regions/{id}', 'api\RegionsController@area_regions');
     Route::get('contacts/{id}','api\ContactsController@search_contact');
+    Route::get('sub_categories/{id}','api\ProjectSubCategoriesController@sub_categories');
 });
 
 

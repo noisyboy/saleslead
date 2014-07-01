@@ -7,23 +7,52 @@
 	</div>
 
 	<div class="col-md-5">
+		<div class="form-group">
+			<span>{{ nl2br($project->project_details) }}</span>
+			<a class="pull-right" href="#" data-toggle="modal" data-target="#edit-class">Edit</a>
+		</div>
 		@include('projects.partials.history')
 	</div>
 
 	<div class="col-md-4">
+		
+
+
 		@foreach($c_groups as $c_group)
 		<div class="sidebar-contacts sidebar-section">
 			<header class="sidebar-heading">
 				<!-- <input class="form-control typeahead" type="text" placeholder="Add Contact"> -->
 				<h6>{{ strtoupper( $c_group->contractor_group )}}</h6>
-				<a id="popover" class="add-contact-sidebar" href="#" data-placement="left">
+				<a class="add-contact-sidebar" href="#" data-placement="left" data-toggle="modal" data-target="#add-{{ $c_group->id }} ">
 					<span class="glyphicon glyphicon-plus"></span>
 				</a>
-				<div id="popover-content" class="hide">
-				  <form>
-				    <!-- my form -->
-				    <input class="form-control typeahead" type="text" placeholder="Add Contact">
-				  </form>
+				<!-- Modal -->
+				<div class="modal fade" id="add-{{ $c_group->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				 	<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">Add Contact to {{ ucwords(strtolower( $c_group->contractor_group )) }}</h4>
+							</div>
+							<div class="modal-body">
+								<form role="form" class="contact-phone" name="phone">
+								  	<div class="form-group">
+								  		{{ Form::label('project_name', 'Contact') }}
+								  		{{ Form::text('project_name', '', array('class' => 'form-control typeahead', 'placeholder' => 'Contact')) }}  		
+								    </div>
+								    <div class="form-group">
+								  		{{ Form::label('project_address', 'Role') }}
+								  		{{ Form::text('project_address', '', array('class' => 'form-control', 'placeholder' => 'Role')) }}  		
+								    </div>
+								    
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<input class="btn btn-primary" type="submit" value="Submit" id="submit">
+							</div>
+						</div>
+				  	</div>
 				</div>
 			</header>
 			

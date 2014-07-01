@@ -102,15 +102,47 @@ class ProjectsController extends BaseController {
 		$c_groups = ContractorGroup::orderBy('contractor_group')->get();
 		$project = Project::with('project_classification')
 			->with('project_category')
+			->with('project_sub_category')
 			->with('project_stage')
 			->with('project_status')
+			->with('area')
+			->with('region')
 			->find($id);
 		$project_contacts = $project->contacts;
 
-		$classificatons = ProjectClassification::all();
-		$categories = ProjectCategory::all();
+		$areas['0'] = 'SELECT AREA';
+		foreach (Area::select('id','area')->orderBy('area')->get() as $area) 
+		{
+			$areas[$area->id] = $area->area;
+		}
+
+		$project_classifications['0'] = 'SELECT CLASSIFICATION';
+		foreach (ProjectClassification::select('id','project_classification')->orderBy('project_classification')->get() as $project_classification) 
+		{
+			$project_classifications[$project_classification->id] = $project_classification->project_classification;
+		}
+
+		$project_categories['0'] = 'SELECT CATEGORY';
+		foreach (ProjectCategory::select('id','project_category')->orderBy('project_category')->get() as $project_category) 
+		{
+			$project_categories[$project_category->id] = $project_category->project_category;
+		}
+
+		$project_stages['0'] = 'SELECT STAGE';
+		foreach (ProjectStage::select('id','project_stage')->orderBy('project_stage')->get() as $project_stage) 
+		{
+			$project_stages[$project_stage->id] = $project_stage->project_stage;
+		}
+
+		$project_statuses['0'] = 'SELECT STAGE';
+		foreach (ProjectStatus::select('id','project_status')->orderBy('project_status')->get() as $project_status) 
+		{
+			$project_statuses[$project_status->id] = $project_status->project_status;
+		}
+
 		$this->layout->content = View::make('projects.show',compact('c_groups',
-			'project','project_contacts','classificatons','categories'));
+			'project','project_contacts','areas','project_classifications',
+			'project_categories','project_stages','project_statuses'));
 	}
 
 

@@ -13,4 +13,9 @@ class ProjectSubCategory extends Eloquent{
 	public function project_category(){
 		return $this->belongsTo('ProjectCategory');
 	}
+
+	public function projects()
+	{
+		return $this->hasMany('Project');
+	}
 }

@@ -13,4 +13,9 @@ class Region extends Eloquent {
 	public function area(){
 		return $this->belongsTo('Area');
 	}
+
+	public function projects()
+	{
+		return $this->hasMany('Project');
+	}
 }

@@ -40,6 +40,11 @@ class Project extends Eloquent {
 		return $this->belongsTo('ProjectCategory');
 	}
 
+	public function project_sub_category()
+	{
+		return $this->belongsTo('ProjectSubCategory');
+	}
+
 	public function project_stage()
 	{
 		return $this->belongsTo('ProjectStage');
@@ -48,5 +53,15 @@ class Project extends Eloquent {
 	public function project_status()
 	{
 		return $this->belongsTo('ProjectStatus');
+	}
+
+	public function area()
+	{
+		return $this->belongsTo('Area');
+	}
+
+	public function region()
+	{
+		return $this->belongsTo('Region');
 	}
 }

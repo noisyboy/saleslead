@@ -35,7 +35,7 @@
   <body>
 
     <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,11 +48,15 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li {{ Request::is('/') ? 'class="active"' : '' }}>
               {{ HTML::link('/','Home') }}
             </li>
-            <li>{{ HTML::link('projects','Projects') }}</li>
-            <li>{{ HTML::link('contacts','Contants') }}</li>
+            <li {{ Request::is('projects*') ? 'class="active"' : '' }}>
+              {{ HTML::link('projects','Projects') }}
+            </li>
+             <li {{ Request::is('contacts*') ? 'class="active"' : '' }}>
+              {{ HTML::link('contacts','Contants') }}
+            </li>
             
           </ul>
           <ul class="nav navbar-nav navbar-right">

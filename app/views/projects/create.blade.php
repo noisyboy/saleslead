@@ -38,13 +38,13 @@
 		</div>
 	</div>
 
-	<div id="area-select" class="form-group">
+	<div id="category-select" class="form-group">
 		{{ Form::label('project_category_id', 'Project Category',array('class' => 'col-sm-2 control-label')) }}
 		<div class="col-sm-10">
 			{{ Form::select('project_category_id', $project_categories,0, array('class' => 'form-control')) }}
 		</div>
 	</div>
-	<div id="region-select" class="form-group">
+	<div id="subcategory-select" class="form-group">
 		{{ Form::label('project_sub_category_id', 'Sub Category',array('class' => 'col-sm-2 control-label')) }}
 		<div class="col-sm-10">
 			<select class="form-control" id="project_sub_category_id" name="project_sub_category_id">

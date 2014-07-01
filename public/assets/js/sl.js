@@ -66,15 +66,9 @@ $(document).ready(function(){
 		});
 	});
 //--------------------------------------------------------
-	// projectst
-	$('#area-select select#area_id').select_chain('#region-select select#region_id','/api/v1/area_regions/','SELECT REGION');
-
- 	$('#popover').popover({ 
-	    html : true,
-	    content: function() {
-	      return $("#popover-content").html();
-	    }
-	});
+	// new project
+	$('#area-select select#area_id').select_chain('#region-select select#region_id','/api/v1/area_regions/','SELECT REGION','regions');
+	$('#category-select select#project_category_id').select_chain('#subcategory-select select#project_sub_category_id','/api/v1/sub_categories/','SELECT SUB CATEGORY','subcategories');
 
 	// typeahead auto complete for adding contact
 	

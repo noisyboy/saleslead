@@ -1,4 +1,5 @@
-<?php namespace Api;
+<?php 
+namespace Api;
 
 class RegionsController extends \BaseController {
 

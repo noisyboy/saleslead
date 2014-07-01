@@ -13,4 +13,9 @@ class Area extends Eloquent {
 	{
 		return $this->hasMany('Region');
 	}
+
+	public function projects()
+	{
+		return $this->hasMany('Project');
+	}
 }
