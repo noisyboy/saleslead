@@ -65,10 +65,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
               <ul class="dropdown-menu">
-               
                 <li class="divider"></li>
                 <li class="dropdown-header">File Maintenance</li>
-                 <li>{{ HTML::link('areas', 'Areas') }}</li>
+                <li>{{ HTML::link('areas', 'Areas') }}</li>
                 <li>{{ HTML::link('regions', 'Regions') }}</li>
                 <li>{{ HTML::link('contractorgroups', 'Contractors Groups') }}</li>
                 <li>{{ HTML::link('projectclassifications','Project Classifications') }}</li>
@@ -76,7 +75,9 @@
                 <li>{{ HTML::link('projectsubcategories','Project Sub Categories') }}</li>
                 <li>{{ HTML::link('projectstages', 'Project Stages') }} </li>
                 <li>{{ HTML::link('projectstatuses', 'Project Statuses') }} </li>
-                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Users Maintenance</li>
+                <li>{{ HTML::link('departments', 'Departments') }}</li>
               </ul>
             </li>
           </ul>

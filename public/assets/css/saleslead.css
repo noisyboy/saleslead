@@ -36,6 +36,12 @@ a:hover {
 	border-color: #6d941e;
 }
 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+  	background-color: #7caa22;
+	border-color: #6d941e;
+    color: #fff;
+}
+
 /*project details*/
 .sidebar-contacts{
 	border-color: #e7e7e7;

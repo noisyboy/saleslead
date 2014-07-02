@@ -1,6 +1,7 @@
 <?php
+namespace Api;
 
-class ProjectsController extends BaseController {
+class ProjectsController extends \BaseController {
 	
 	/**
 	 * Update the specified resource in storage.
