@@ -1,5 +1,5 @@
 @section('content')
-<h1 class="page-header">Contacts</h1>
+<h1 class="page-header">My Contacts</h1>
 
 <div class="page-header-button">
 	{{ HTML::linkRoute('contacts.create', 'New Contact', array(), array('class' => 'btn btn-primary')) }}

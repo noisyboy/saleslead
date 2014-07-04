@@ -26,7 +26,7 @@ class CreatePhoneTypesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('phone_types');
+		Schema::dropIfExists('phone_types');
 	}
 
 }

@@ -11,14 +11,6 @@
 |
 */
 
-// Route::get('/', function()
-// {
-// 	return View::make('hello');
-// });
-// Route::get('/', 'HomeController@showWelcome');
-
-Route::get('/', 'HomeController@getIndex');
-
 // Route group for API versioning
 Route::group(array('prefix' => 'api/v1'), function()
 {
@@ -28,22 +20,34 @@ Route::group(array('prefix' => 'api/v1'), function()
 });
 
 
-Route::resource('contacts', 'ContactsController');
-Route::resource('projects', 'ProjectsController');
-Route::resource('areas', 'AreasController');
-Route::resource('regions', 'RegionsController');
-Route::resource('contractorgroups','ContractorGroupsController');
-Route::resource('projectclassifications','ProjectClassificationsController');
-Route::resource('projectcategories','ProjectCategoriesController');
-Route::resource('projectsubcategories','ProjectSubCategoriesController');
-Route::resource('projectstages','ProjectStagesController');
-Route::resource('projectstatuses','ProjectStatusesController');
-Route::resource('departments','DepartmentsController');
+// Route group for authenticated users
+Route::group(array('before' => 'auth'), function()
+{
+   	Route::resource('contacts', 'ContactsController');
+	Route::resource('projects', 'ProjectsController');
+	Route::resource('areas', 'AreasController');
+	Route::resource('regions', 'RegionsController');
+	Route::resource('contractorgroups','ContractorGroupsController');
+	Route::resource('projectclassifications','ProjectClassificationsController');
+	Route::resource('projectcategories','ProjectCategoriesController');
+	Route::resource('projectsubcategories','ProjectSubCategoriesController');
+	Route::resource('projectstages','ProjectStagesController');
+	Route::resource('projectstatuses','ProjectStatusesController');
+	Route::resource('departments','DepartmentsController');
 
-Route::get('phonetypes/json', 'PhoneTypesController@Json');
+	Route::get('phonetypes/json', 'PhoneTypesController@Json');
 
-Route::post('phones', 'PhonesController@store');
-Route::post('emails', 'EmailsController@store');
+	Route::post('phones', 'PhonesController@store');
+	Route::post('emails', 'EmailsController@store');
 
+	Route::controller('users','UsersController');
+	Route::controller('dashboard','DashboardController');
 
-// Route::controller('leadtype', 'LeadTypeController');
+	Route::get('/', 'DashboardController@getIndex');
+
+});
+
+Route::get('logout','AuthController@getLogout');
+Route::get('login','AuthController@getLogin');
+Route::post('login','AuthController@postLogin');
+

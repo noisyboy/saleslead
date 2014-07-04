@@ -36,7 +36,7 @@ class CreateContactPhonesTable extends Migration {
 			$t->dropForeign('phones_phone_type_id_foreign');
 			$t->dropForeign('phones_contact_id_foreign');
 		});
-		Schema::drop('phones');
+		Schema::dropIfExists('phones');
 	}
 
 }

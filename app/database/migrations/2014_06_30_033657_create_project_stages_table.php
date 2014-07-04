@@ -26,7 +26,7 @@ class CreateProjectStagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('project_stages');
+		Schema::dropIfExists('project_stages');
 	}
 
 }

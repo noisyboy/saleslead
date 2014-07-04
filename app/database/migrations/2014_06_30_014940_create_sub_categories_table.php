@@ -32,7 +32,7 @@ class CreateSubCategoriesTable extends Migration {
 		Schema::table('project_sub_categories', function($t){
 			$t->dropForeign('project_sub_categories_project_category_id_foreign');
 		});
-		Schema::drop('project_sub_categories');
+		Schema::dropIfExists('project_sub_categories');
 	}
 
 }

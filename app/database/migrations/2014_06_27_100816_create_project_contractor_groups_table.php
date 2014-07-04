@@ -25,7 +25,7 @@ class CreateProjectContractorGroupsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('project_contractor_groups');
+		Schema::dropIfExists('project_contractor_groups');
 	}
 
 }

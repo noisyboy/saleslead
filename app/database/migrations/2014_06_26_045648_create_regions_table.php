@@ -31,7 +31,7 @@ class CreateRegionsTable extends Migration {
 		Schema::table('regions', function($t){
 			$t->dropForeign('regions_area_id_foreign');
 		});
-		Schema::drop('regions');
+		Schema::dropIfExists('regions');
 	}
 
 }

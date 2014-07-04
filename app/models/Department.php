@@ -9,5 +9,8 @@ class Department extends Eloquent {
 		'department' => 'required'
 	);
 
-
+	public function users()
+	{
+		return $this->hasMany('User');
+	}
 }

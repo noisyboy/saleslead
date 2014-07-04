@@ -40,7 +40,7 @@ class CreateProjectContactsTable extends Migration {
 			$t->dropForeign('project_contacts_contact_id_foreign');
 			$t->dropForeign('project_contacts_contractor_group_id_foreign');
 		});
-		Schema::drop('project_contacts');
+		Schema::dropIfExists('project_contacts');
 	}
 
 }
