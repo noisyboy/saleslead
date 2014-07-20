@@ -55,7 +55,7 @@
               {{ HTML::link('projects','Projects') }}
             </li>
              <li {{ Request::is('contacts*') ? 'class="active"' : '' }}>
-              {{ HTML::link('contacts','Contants') }}
+              {{ HTML::link('contacts','Contacts') }}
             </li>
             
           </ul>

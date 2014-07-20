@@ -55,7 +55,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			url: "../emails", 
-			data: $('form.contact-email').serialize(),
+			data: $('form.contact-email').serialize() + "&id=" + morevalue,
 			success: function(msg){
 				$("#email-modal").modal('hide'); //hide popup 
 				location.reload();
