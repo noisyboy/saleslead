@@ -44,7 +44,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li>{{ HTML::link('about', 'About') }}</li>
-            <li>{{ HTML::link('users/login', 'Log in') }}</li>
+            <li>{{ HTML::link('users', 'Log in') }}</li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
