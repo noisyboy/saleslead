@@ -51,8 +51,14 @@
             <li {{ Request::is('/') ? 'class="active"' : '' }}>
               {{ HTML::link('/','Home') }}
             </li>
-            <li {{ Request::is('projects*') ? 'class="active"' : '' }}>
-              {{ HTML::link('projects','Projects') }}
+            <li {{ Request::is('projects*') ? 'class="active"' : '' }} class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li>{{ HTML::link('projects/listing','Open Projects') }}</li>
+                <li>{{ HTML::link('projects/create','New Project') }}</li>
+                <li>{{ HTML::link('projects/assign','Assign Projects') }}</li>
+                <li>{{ HTML::link('projects/assigned', 'Assigned Projects') }}</li>
+              </ul>
             </li>
              <li {{ Request::is('contacts*') ? 'class="active"' : '' }}>
               {{ HTML::link('contacts','Contacts') }}
@@ -80,7 +86,7 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->email; }} <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->email ? : '' }} <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li>{{ HTML::link('profile', 'Profile') }}</li>
                 <li>{{ HTML::link('logout', 'Logout') }}</li>

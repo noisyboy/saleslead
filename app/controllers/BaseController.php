@@ -24,5 +24,11 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+	
+
+	public function missingMethod($parameters = array())
+	{
+	    $this->layout->content =  View::make('shared.404_error');
+	}
 
 }

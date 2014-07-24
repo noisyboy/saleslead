@@ -25,6 +25,16 @@ class Project extends Eloquent {
 		'project_status_id' => 'required',
 	);
 
+	// auto add of created by
+	public function save(array $options = array())
+    {
+        if( ! $this->created_by)
+        {
+            $this->created_by = Auth::user()->id;
+        }
+        parent::save($options);
+    }
+
 	public function contacts()
 	{
 		return $this->belongsToMany('Contact','project_contacts')->withPivot('contractor_group_id');

@@ -2,10 +2,11 @@
 <h1 class="page-header">Add Contact</h1>
 
 @if ($errors->any())
-
+<div class="col-md-offset-2 alert alert-danger " >
     <ul>
         {{ implode('', $errors->all('<li class="error">:message</li>')) }}
     </ul>
+</div>
 @endif
 
 {{ Form::open(array('route' => 'contacts.store', 'class' => 'form-horizontal', 'role' => 'form')) }}

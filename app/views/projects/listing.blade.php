@@ -1,9 +1,5 @@
 @section('content')
-<h1 class="page-header">My Projects</h1>
-
-<div class="page-header-button">
-	{{ HTML::link('projects/create','New Project',array('class' => 'btn btn-primary')) }}
-</div>
+<h1 class="page-header">Open Projects</h1>
 
 <div class="widget widget-table action-table">
 	<!-- /widget-header -->
@@ -19,7 +15,7 @@
 				@foreach($projects as $project)
 			  	<tr>
 					<td>
-						{{ HTML::linkAction('ProjectsController@getShow', $project->project_name, $project->id ) }}
+						{{ HTML::linkAction('ProjectsController@getListing', $project->project_name, $project->id ) }}
 					</td>
 					<td>
 						{{ $project->project_address }}

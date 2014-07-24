@@ -24,7 +24,7 @@ Route::group(array('prefix' => 'api/v1'), function()
 Route::group(array('before' => 'auth'), function()
 {
    	Route::resource('contacts', 'ContactsController');
-	Route::resource('projects', 'ProjectsController');
+	
 	Route::resource('areas', 'AreasController');
 	Route::resource('regions', 'RegionsController');
 	Route::resource('contractorgroups','ContractorGroupsController');
@@ -42,6 +42,7 @@ Route::group(array('before' => 'auth'), function()
 
 	Route::controller('users','UsersController');
 	Route::controller('dashboard','DashboardController');
+	Route::controller('projects', 'ProjectsController');
 
 	Route::get('/', 'DashboardController@getIndex');
 

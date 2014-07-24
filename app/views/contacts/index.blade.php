@@ -12,6 +12,7 @@
 			<thead>
 			  	<tr>
 					<th>Contact Person</th>
+					<th>Title</th>
 					<th>Company Name</th>
 			  	</tr>
 			</thead>
@@ -21,6 +22,7 @@
 					<td>
 						{{ HTML::linkRoute('contacts.show', $contact->first_name .' '. $contact->middle_name .' '. $contact->last_name, $contact->id ) }}
 					</td>
+					<td>{{ $contact->title }}</td>
 					<td>{{ $contact->company_name }}</td>
 			  	</tr>
 			  	@endforeach

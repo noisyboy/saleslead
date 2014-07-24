@@ -2,7 +2,7 @@
 
 class Contact extends Eloquent {
 	
-	protected $fillable = array('company_name', 'address','first_name','middle_name','last_name','title');
+	protected $fillable = array('company_name','address','first_name','middle_name','last_name','title');
 
 	public static $rules = array(
 		'company_name' => 'required',
@@ -12,6 +12,16 @@ class Contact extends Eloquent {
 		'last_name' => 'required',
 		'title' => 'required'
 	);
+
+	// auto add of created by
+	public function save(array $options = array())
+    {
+        if( ! $this->created_by)
+        {
+            $this->created_by = Auth::user()->id;
+        }
+        parent::save($options);
+    }
 
 	public function phones()
 	{

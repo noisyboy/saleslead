@@ -75,7 +75,7 @@ $(document).ready(function(){
 	var contacts = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		remote: '../api/v1/contacts/%QUERY'
+		remote: '/../api/v1/contacts/%QUERY'
 	});
 	 
 	contacts.initialize();

@@ -9,8 +9,8 @@ class ContactsController extends BaseController {
 	 */
 	public function index()
 	{
-		// $contacts = Contact::all();
-		$contacts = DB::table('contacts')->get();
+		$contacts = Contact::where('created_by',Auth::user()->id)->get();
+		// $contacts = DB::table('contacts')->get();
 		$this->layout->content = View::make('contacts.index',compact('contacts'));
 	}
 
@@ -38,9 +38,18 @@ class ContactsController extends BaseController {
 
 		if($validation->passes())
 		{
-			$contact = Contact::create($input);
-			// return Redirect::route('contacts.index');
-			// redirect
+			// $user_id = Auth::user()->id;
+			// $contact = Contact::create($input);
+			$contact = new Contact;
+			$contact->created_by =  Auth::user()->id;
+			$contact->company_name = Str::upper(Input::get('company_name'));
+			$contact->address = Str::upper(Input::get('address'));
+			$contact->first_name = Str::upper(Input::get('first_name'));
+			$contact->middle_name = Str::upper(Input::get('middle_name'));
+			$contact->last_name = Str::upper(Input::get('last_name'));
+			$contact->title = Str::upper(Input::get('title'));
+			$contact->save();
+
 			Session::flash('message', 'Successfully created contact!');
 			return Redirect::route('contacts.show',array($contact->id));
 		}else
