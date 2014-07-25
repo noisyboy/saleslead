@@ -22,6 +22,7 @@ class ProjectsController extends BaseController {
 	 */
 	public function getCreate()
 	{	
+		
 		$areas['0'] = 'SELECT AREA';
 		foreach (Area::select('id','area')->orderBy('area')->get() as $area) 
 		{

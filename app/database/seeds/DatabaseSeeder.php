@@ -21,6 +21,10 @@ class DatabaseSeeder extends Seeder {
 
         $this->command->info('Project Classifications table seeded!');
 
+        $this->call('RoleTableSeeder');
+
+        $this->command->info('Role Table table seeded!');
+
 	}
 
 
