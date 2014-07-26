@@ -13,17 +13,17 @@ class DatabaseSeeder extends Seeder {
 
 		// $this->call('UserTableSeeder');
 
-		$this->call('PhoneTypeTableSeeder');
+		// $this->call('PhoneTypeTableSeeder');
+		// $this->command->info('Phone Types table seeded!');
 
-        $this->command->info('Phone Types table seeded!');
+		// $this->call('ProjectClassificationSeeder');
+		// $this->command->info('Project Classifications table seeded!');
 
-        $this->call('ProjectClassificationSeeder');
+		// $this->call('RoleTableSeeder');
+		// $this->command->info('Role Table table seeded!');
 
-        $this->command->info('Project Classifications table seeded!');
-
-        $this->call('RoleTableSeeder');
-
-        $this->command->info('Role Table table seeded!');
+		$this->call('PermissionTableSeeder');
+		$this->command->info('Permission Table table seeded!');
 
 	}
 
