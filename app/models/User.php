@@ -2,14 +2,17 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Zizaco\Entrust\HasRole;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
+	use HasRole; // Add this trait to your user model
 
 	public static $rules = array(
 	    'first_name'=>'required|alpha|min:2',
 	    'last_name'=>'required|alpha|min:2',
 	    'email'=>'required|email|unique:users',
+	    'username'=>'required|unique:users',
 	    'password'=>'required|alpha_num|between:6,12|confirmed',
 	    'password_confirmation'=>'required|alpha_num|between:6,12'
     );
@@ -79,28 +82,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	    return 'remember_token';
 	}
 
-	// machuga/authority-l4
-	public function roles() 
-	{
-        return $this->belongsToMany('Role');
-    }
-
-    public function permissions() 
-    {
-        return $this->hasMany('Permission');
-    }
-
-    public function hasRole($key) 
-    {
-        foreach($this->roles as $role)
-        {
-            if($role->name === $key)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // end
 }

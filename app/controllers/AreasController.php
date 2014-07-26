@@ -2,6 +2,8 @@
 
 class AreasController extends BaseController {
 
+	
+
 	/**
 	 * Display a listing of the resource.
 	 *

@@ -44,6 +44,12 @@
 			{{ Form::select('department_id', $departments,0, array('class' => 'form-control')) }}
 		</div>
 	</div>
+	<div id="area-select" class="form-group">
+		{{ Form::label('role', 'Role',array('class' => 'col-sm-2 control-label')) }}
+		<div class="col-sm-10">
+			{{ Form::select('role', $roles,0, array('class' => 'form-control')) }}
+		</div>
+	</div>
 	<br>
 	<div class="form-group">
 		{{ Form::label('username', 'Username',array('class' => 'col-sm-2 control-label')) }}

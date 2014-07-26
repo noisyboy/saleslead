@@ -24,7 +24,13 @@ class UsersController extends \BaseController {
 		{
 			$departments[$department->id] = $department->department;
 		}
-		$this->layout->content = View::make('users.create',compact('departments'));
+		
+		foreach (Role::select('id', 'name')->orderBy('name','asc')->get() as $role)
+		{
+			$roles[$role->id] = $role->name;
+		}
+
+		$this->layout->content = View::make('users.create',compact('departments','roles'));
 	}
 
 	/**
@@ -34,8 +40,6 @@ class UsersController extends \BaseController {
 	 */
 	public function postCreate()
 	{
-	
-
 	    $validation = Validator::make(Input::all(), User::$rules);
 
 		if($validation->passes())
@@ -51,6 +55,9 @@ class UsersController extends \BaseController {
 		    $user->password = Hash::make(Input::get('password'));
 		    $user->active = 1;
 		    $user->save();
+
+		    $user->roles()->attach((int)Input::get('role')); // id only
+		    return Redirect::action('UsersController@getShow',array($user->id));
 		}else
 		{
 			return Redirect::to('users/create')
@@ -59,6 +66,17 @@ class UsersController extends \BaseController {
 				->withErrors($validation);
 		}
 
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function getShow($id)
+	{
+		//
 	}
 
 

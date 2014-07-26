@@ -11,6 +11,24 @@
 |
 */
 
+// App::error(function($exception, $code)
+// {
+//     switch ($code)
+//     {
+//         case 403:
+//             return Response::view('errors.403', array(), 403);
+
+//         case 404:
+//             return Response::view('errors.404', array(), 404);
+
+//         case 500:
+//             return Response::view('errors.500', array(), 500);
+
+//         default:
+//             return Response::view('errors.default', array(), $code);
+//     }
+// });
+
 App::before(function($request)
 {
 	//
@@ -88,3 +106,13 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+Entrust::routeNeedsPermission( 'areas*', 'manage_areas',Redirect::to('/access/denied'));
+Entrust::routeNeedsPermission( 'regions*', 'manage_regions',Redirect::to('/access/denied'));
+Entrust::routeNeedsPermission( 'contractorgroups*', 'manage_contractorgroups',Redirect::to('/access/denied'));
+Entrust::routeNeedsPermission( 'projectclassifications*', 'manage_projectclassifications',Redirect::to('/access/denied'));
+Entrust::routeNeedsPermission( 'projectcategories*', 'manage_projectcategories',Redirect::to('/access/denied'));
+Entrust::routeNeedsPermission( 'projectsubcategories*', 'manage_projectsubcategories',Redirect::to('/access/denied'));
+Entrust::routeNeedsPermission( 'projectstages*', 'manage_projectstages',Redirect::to('/access/denied'));
+Entrust::routeNeedsPermission( 'projectstatuses*', 'manage_projectstatuses',Redirect::to('/access/denied'));
