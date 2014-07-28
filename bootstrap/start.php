@@ -26,7 +26,8 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('noisyboy'),
+	// 'local' => array('noisyboy','127.0.0.1','localhost','zyryn-Thinkpad-T400'),
+	'local' => array('noisyboy','127.0.0.1','localhost','zyryn-ThinkPad-T400'),
 	'production' => array('http://rencie.chasetech.com/'),
 
 ));

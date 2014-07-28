@@ -80,6 +80,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::controller('users','UsersController');
 	Route::controller('dashboard','DashboardController');
 	Route::controller('projects', 'ProjectsController');
+	
 	Route::controller('roles', 'RolesController');
 
 });

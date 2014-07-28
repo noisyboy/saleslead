@@ -41,8 +41,10 @@ class RolesController extends \BaseController {
 			$role->name = Str::upper(Input::get('name'));
 			$role->save();
 
-			// Session::flash('message', 'Successfully created project!');
-			return Redirect::action('RolesController@getShow',array($role->id));
+			Session::flash('class', 'alert alert-success');
+			Session::flash('message', 'Successfully created role!');
+			// return Redirect::action('RolesController@getShow',array($role->id));
+			return Redirect::to('roles');
 		}else
 		{
 			return Redirect::to('roles/create')
@@ -52,16 +54,17 @@ class RolesController extends \BaseController {
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function getShow($id)
-	{
-		//
-	}
+	// /**
+	//  * Display the specified resource.
+	//  *
+	//  * @param  int  $id
+	//  * @return Response
+	//  */
+	// public function getShow($id)
+	// {
+	// 	$role = Role::find($id);
+	// 	$this->layout->content = View::make('roles.show',compact('role'));
+	// }
 
 
 	// *
@@ -70,34 +73,151 @@ class RolesController extends \BaseController {
 	//  * @param  int  $id
 	//  * @return Response
 	 
-	// public function edit($id)
-	// {
-	// 	//
-	// }
+	public function getEdit($id = null)
+	{
+		if((is_null($id)) || (!is_numeric($id))){
+			$this->missingMethod();
+		}else{
+			$role = Role::find($id);
+			
+			if(empty($role)){
+				$this->missingMethod();
+			}else{
+				$this->layout->content = View::make('roles.edit',compact('role'));
+			}
+
+		}
+		
+	}
 
 
-	// /**
-	//  * Update the specified resource in storage.
-	//  *
-	//  * @param  int  $id
-	//  * @return Response
-	//  */
-	// public function update($id)
-	// {
-	// 	//
-	// }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function putUpdate($id = null)
+	{
+		if((is_null($id)) || (!is_numeric($id))){
+			$this->missingMethod();
+		}else{
+			$role = Role::find($id);
+			
+			if(empty($role)){
+				$this->missingMethod();
+			}else{
+				$input = Input::only('name');
+				$validation = Validator::make($input, Role::$rules);
+
+				if($validation->passes())
+				{
+					$role = Role::find($id);
+					$role->name = Str::upper(Input::get('name'));
+					$role->save();
+
+					Session::flash('class', 'alert alert-success');
+					Session::flash('message', 'Successfully updated role!');
+					return Redirect::to('roles');
+				}else
+				{
+					return Redirect::action('RolesController@getEdit',array($role->id))
+						->withInput()
+						->withErrors($validation);
+				}
+			}
+
+		}
+
+		
+	}
 
 
-	// /**
-	//  * Remove the specified resource from storage.
-	//  *
-	//  * @param  int  $id
-	//  * @return Response
-	//  */
-	// public function destroy($id)
-	// {
-	// 	//
-	// }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function deleteDestroy($id = null)
+	{
+		if((is_null($id)) || (!is_numeric($id))){
+			$this->missingMethod();
+		}else{
+			$role = Role::find($id);
+			
+			if(empty($role)){
+				$this->missingMethod();
+			}else{
+				$role_users = Role::find($id)->users()->get();
+				// print_r($role->toArray());
+				if(count($role_users)>0){
+					// redirect
+					Session::flash('class', 'alert alert-danger');
+					Session::flash('message', 'Cannot delete selected role!');
+					return Redirect::to('roles');
+				}else{
+					// delete
+					$role->delete();
+
+					// redirect
+					Session::flash('class', 'alert alert-success');
+					Session::flash('message', 'Successfully deleted the role!');
+					return Redirect::to('roles');
+				}
+
+			}
+
+		}
+	}
+
+	// role permissions
+	public function getPermission($id = null)
+	{
+		if((is_null($id)) || (!is_numeric($id))){
+			$this->missingMethod();
+		}else{
+			$role = Role::with('perms')->find($id);
+			if(empty($role)){
+				$this->missingMethod();
+			}else{
+				$selected = array();
+				foreach ($role->perms as $perm) {
+					$selected[] = $perm->id;
+				}
+
+				$permissions = Permission::all();
+				$this->layout->content = View::make('roles.permissions',compact('permissions','role','selected'));
+			}
+
+		}
+		
+	}
+
+	public function putPermission($id)
+	{
+		if((is_null($id)) || (!is_numeric($id))){
+			$this->missingMethod();
+		}else{
+			$role = Role::find($id);	
+			if(empty($role)){
+				$this->missingMethod();
+			}else{
+				$perms = Input::get('permission_id');
+				if(!empty($perms)){
+					$role->perms()->sync($perms);
+				}else{
+					$role->detachPermissions($role->perms);
+				}
+					
+				Session::flash('class', 'alert alert-success');
+				Session::flash('message', 'Successfully updated permission!');
+				return Redirect::action('RolesController@getPermission',array($role->id));
+			}
+
+		}
+		
+	}
 
 
 }

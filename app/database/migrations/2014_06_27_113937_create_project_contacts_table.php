@@ -36,9 +36,11 @@ class CreateProjectContactsTable extends Migration {
 	public function down()
 	{
 		Schema::table('project_contacts', function($t){
-			$t->dropForeign('project_contacts_project_id_foreign');
-			$t->dropForeign('project_contacts_contact_id_foreign');
 			$t->dropForeign('project_contacts_contractor_group_id_foreign');
+			$t->dropForeign('project_contacts_contact_id_foreign');
+			$t->dropForeign('project_contacts_project_id_foreign');
+			
+			
 		});
 		Schema::dropIfExists('project_contacts');
 	}

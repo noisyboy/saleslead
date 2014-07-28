@@ -37,9 +37,6 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('users', function($t){
-			$t->dropForeign('project_department_id_foreign');
-		});
 		Schema::dropIfExists("users");
 	}
 
