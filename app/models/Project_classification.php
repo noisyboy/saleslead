@@ -11,6 +11,6 @@ class ProjectClassification extends Eloquent {
 
 	public function projects()
 	{
-		return $this->hasMany('Project');
+		return $this->hasMany('Project','created_by');
 	}
 }

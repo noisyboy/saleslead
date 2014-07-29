@@ -11,7 +11,11 @@ class Project extends Eloquent {
 		'project_sub_category_id',
 		'project_stage_id',
 		'project_details',
-		'project_status_id');
+		'project_status_id',
+		'created_by',
+		'assigned_to',
+		'assigned_by',
+		'status_id');
 
 	public static $rules = array(
 		'project_name' => 'required',
@@ -73,5 +77,9 @@ class Project extends Eloquent {
 	public function region()
 	{
 		return $this->belongsTo('Region');
+	}
+
+	public function createdBy(){
+		return $this->belongsTo('User','created_by');
 	}
 }

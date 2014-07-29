@@ -10,8 +10,8 @@ class ProjectsController extends BaseController {
 	public function getIndex()
 	{
 		// $projects = Project::all();
-		$projects = Project::where('created_by', Auth::user()->id)->get();
-		$this->layout->content =  View::make('projects.index',compact('projects'));
+		// $projects = Project::where('created_by', Auth::user()->id)->get();
+		// $this->layout->content =  View::make('projects.index',compact('projects'));
 	}
 
 
@@ -94,7 +94,7 @@ class ProjectsController extends BaseController {
 		    $project->save();
 
 			Session::flash('message', 'Successfully created project!');
-			return Redirect::to('projects/show',array($project->id));
+			return Redirect::action('ProjectsController@getShow',array($project->id));
 		}
 		else
 		{
@@ -199,10 +199,76 @@ class ProjectsController extends BaseController {
 	/**
 	 * list of projects for assigning
 	 */
-	public function getAssign()
+	public function getAssign($id = null)
 	{
-		$projects = Project::all();
-		$this->layout->content =  View::make('projects.assign',compact('projects'));
+		if(is_null($id)){
+			$projects = Project::where('status_id',1)->get();
+			$this->layout->content =  View::make('projects.assign',compact('projects'));
+		}else{
+			if(!is_numeric($id)){
+				$this->missingMethod();
+			}else{
+				$project = Project::where('id',$id)
+					->where('status_id',1)
+					->with('project_classification')
+					->with('project_category')
+					->with('project_sub_category')
+					->with('project_stage')
+					->with('project_status')
+					->with('area')
+					->with('region')
+					->with('createdBy')->first();
+
+				if(empty($project)){
+					$this->missingMethod();
+				}else{
+					$users['0'] = 'SELECT BDO';
+
+					foreach (User::where('active','1')->orderBy('first_name')->get() as $user) 
+					{
+						$users[$user->id] = Str::upper($user->getFullName());
+					}
+					$this->layout->content =  View::make('projects.assign_details',compact('project','users'));	
+				}
+			}
+		}
+		
+	}
+
+	public function postAssign($id = null)
+	{
+		if((is_null($id)) || (!is_numeric($id))){
+			$this->missingMethod();
+		}else{
+			$project = Project::where('id',$id)
+					->where('status_id',1)
+					->first();
+			if(empty($project)){
+				$this->missingMethod();
+			}else{
+				$rules = array('assign_to_id' => 'required|integer|min:1');
+				$validator = Validator::make(Input::only('assign_to_id'), $rules);
+
+				if($validator->passes())
+				{
+					$project->assigned_to = Input::get('assign_to_id');
+					$project->assigned_by = Auth::user()->id;
+					$project->status_id = 2;
+					$project->save();
+
+					// redirect
+					Session::flash('class', 'alert alert-success');
+					Session::flash('message', 'Successfully assigned project!');
+					return Redirect::to('projects/assign');
+				}
+				else
+				{
+					return Redirect::action('ProjectsController@postAssign',array($project->id))
+						->withInput()
+						->withErrors($validator);
+				}
+			}
+		}
 	}
 
 	/**
@@ -210,8 +276,11 @@ class ProjectsController extends BaseController {
 	 */
 	public function getAssigned()
 	{
-		$projects = Project::all();
+		$projects = Project::where('status_id',2)
+			->where('assigned_to',Auth::user()->id)->get();
+		
 		$this->layout->content =  View::make('projects.assigned',compact('projects'));
+		
 	}
 
 	/**

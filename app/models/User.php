@@ -82,4 +82,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	    return 'remember_token';
 	}
 
+	public function getFullName()
+	{
+	    return $this->attributes['first_name'] .' '.$this->attributes['middle_name'].' '.$this->attributes['last_name'];
+	}
+
+	public function createdProjects()
+	{
+		return $this->hasMany('Project','created_by');
+	}
+
 }

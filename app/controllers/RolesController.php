@@ -117,7 +117,7 @@ class RolesController extends \BaseController {
 					$role->save();
 
 					Session::flash('class', 'alert alert-success');
-					Session::flash('message', 'Successfully updated role!');
+					Session::flash('message', 'Successfully updated role!');	
 					return Redirect::to('roles');
 				}else
 				{
