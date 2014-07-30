@@ -3,15 +3,19 @@ namespace Api;
 
 class ProjectsController extends \BaseController {
 	
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
+	/**
+	 * add contacts to existring project
+	 */
+	public function postAddContact($id = null){
+		if(!is_null($id)){
+			
+			return \Response::json(array(
+			'error' => false));
+		}else{
+			return \Response::json(array(
+			'error' => true));
+		}
+		
+	}
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
     <title>Sales Lead</title>
@@ -54,10 +55,10 @@
             <li {{ Request::is('projects*') ? 'class="active"' : '' }} class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li>{{ HTML::link('projects/listing','Open Projects') }}</li>
                 <li>{{ HTML::link('projects/create','New Project') }}</li>
-                <li>{{ HTML::link('projects/assign','Assign Projects') }}</li>
                 <li>{{ HTML::link('projects/assigned', 'Assigned Projects') }}</li>
+                <li>{{ HTML::link('projects/listing','Open Projects') }}</li>
+                <li>{{ HTML::link('projects/assign','Assign Projects') }}</li>
               </ul>
             </li>
              <li {{ Request::is('contacts*') ? 'class="active"' : '' }}>

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	var domain ="http://"+document.domain;
+
 	//add new fields for phone
 	$('#add-phone').click(function(e){
 		var phone_group = $(this).closest('.form-group').clone();
@@ -91,5 +93,37 @@ $(document).ready(function(){
 			'<p class="repo-description">{{company_name}}</p>'
 			].join(''))
 		} 
+	});
+//--------------------------------------------------------
+	// add contact to project
+	$(".add-contact-sidebar").click(function(){
+		var group = $(this).siblings().text();
+		$('#add-contact #myModalLabel').text("Add contact to '" + group + "' group.");
+		$('#add-contact #group_id').val($(this).attr('id'));
+		$('#add-contact').modal('show');
+		return false;
+	});
+
+	$('#add-contact').on('hide.bs.modal', function (e) {
+	  	$(':input','#add-contact')
+		  .not(':button, :submit, :reset, :hidden')
+		  .val('')
+		  .removeAttr('checked')
+		  .removeAttr('selected');
+	})
+
+	$("#add-contact input#submit").click(function(){
+		$.ajax({
+			type: "POST",
+			headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+			url: "/../api/v1/addcontact/" + $('#add-contact #group_id').val(), 
+			data: $('form.project-contact').serialize(),
+			success: function(msg){
+				$("#add-contact").modal('hide'); //hide popup 
+			},
+			error: function(){
+				alert("failure");
+			}
+		});
 	});
 });

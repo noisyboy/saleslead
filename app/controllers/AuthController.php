@@ -11,10 +11,13 @@ class AuthController extends \BaseController {
 	public function getLogout()
 	{
 		Auth::logout();
+
+		return Redirect::intended('/');
+		
 		// return Redirect::back()
-		return Redirect::intended('/')
-			->with(array('flash_message' => 'Invalid credentials, please try again','flash_type' =>'danger'))
-			->withInput();
+		// return Redirect::intended('/')
+		// 	->with(array('flash_message' => 'Invalid credentials, please try again','flash_type' =>'danger'))
+		// 	->withInput();
 	}
 	public function postLogin()
 	{	
@@ -26,6 +29,8 @@ class AuthController extends \BaseController {
 		 
 		if ($validator->fails())
 		{
+			Session::flash('message', 'Invalid credentials, please try again');
+			Session::flash('class', 'alert alert-danger');
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 		 
@@ -42,15 +47,16 @@ class AuthController extends \BaseController {
 		}	
 		 
 		if($attempt) {
-			return Redirect::intended('/')
-			->with(array('flash_message' => 'Successfully logged in',
-			'flash_type' => 'success') );
+			return Redirect::intended('/');
+			// return Redirect::intended('/')
+			// ->with(array('flash_message' => 'Successfully logged in',
+			// 'flash_type' => 'success') );
 		}
 		 
 		Auth::logout();
-		return Redirect::back()
-			->with(array('flash_message' => 'Invalid credentials, please try again','flash_type' =>'danger'))
-			->withInput();
+		Session::flash('message', 'Invalid credentials, please try again');
+		Session::flash('class', 'alert alert-danger');
+		return Redirect::back();
 	}
 
 }

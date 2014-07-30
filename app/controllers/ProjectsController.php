@@ -91,6 +91,7 @@ class ProjectsController extends BaseController {
 		    $project->project_stage_id = Input::get('project_stage_id');
 		    $project->project_details = Input::get('project_details');
 		    $project->project_status_id = Input::get('project_status_id');
+		    $project->created_by = Auth::user()->id;
 		    $project->save();
 
 			Session::flash('message', 'Successfully created project!');
@@ -290,7 +291,7 @@ class ProjectsController extends BaseController {
 	{
 		if(is_null($id))
 		{
-			$projects = Project::all();
+			$projects = Project::where('status_id',2)->get();
 			$this->layout->content =  View::make('projects.listing',compact('projects'));
 		}
 		else
@@ -336,11 +337,12 @@ class ProjectsController extends BaseController {
 				$project_statuses[$project_status->id] = $project_status->project_status;
 			}
 
-			$this->layout->content = View::make('projects.show',compact('c_groups',
+			$this->layout->content = View::make('projects.open_details',compact('c_groups',
 				'project','project_contacts','areas','project_classifications',
 				'project_categories','project_stages','project_statuses'));
 		}
-		
 	}
+
+	
 
 }

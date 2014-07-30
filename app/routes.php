@@ -11,12 +11,17 @@
 |
 */
 
+
+
 // Route group for API versioning
-Route::group(array('prefix' => 'api/v1'), function()
+Route::group(array('prefix' => 'api/v1','before' => 'auth'), function()
 {
     Route::get('area_regions/{id}', 'api\RegionsController@area_regions');
     Route::get('contacts/{id}','api\ContactsController@search_contact');
     Route::get('sub_categories/{id}','api\ProjectSubCategoriesController@sub_categories');
+
+
+    Route::post('addcontact/{id?}','api\ProjectsController@postAddContact');
 });
 
 // Route::get('/', function(){
@@ -79,6 +84,7 @@ Route::group(array('before' => 'auth'), function()
 
 	Route::controller('users','UsersController');
 	Route::controller('dashboard','DashboardController');
+
 	Route::controller('projects', 'ProjectsController');
 	
 	Route::controller('roles', 'RolesController');
