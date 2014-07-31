@@ -7,11 +7,9 @@ class ContactsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
-		// $contacts = Contact::where('created_by',Auth::user()->id)->get();
-		$user = User::find(Auth::user()->id);
-		$contacts = $user->contacts;
+		$contacts = Contact::where('created_by',Auth::user()->id)->get();
 		$this->layout->content = View::make('contacts.index',compact('contacts'));
 	}
 
@@ -68,15 +66,16 @@ class ContactsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function getShow($id)
 	{
 		// $contact = Contact::find($id);
-		$contact = Contact::find($id);
+		$contact = Contact::with('projects')->find($id);
 
 		foreach (PhoneType::select('id', 'phone_type')->orderBy('id','asc')->get() as $phonetype)
 		{
 			$phonetypes[$phonetype->id] = $phonetype->phone_type;
 		}
+
 		$this->layout->content = View::make('contacts.show',compact('contact','phonetypes'));
 	}
 

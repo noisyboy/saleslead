@@ -83,7 +83,7 @@
 					<div>
 						<p>
 							<a class="sidebar-title-link sidebar-contact-name" href="#">
-								<strong>{{ ucwords(strtolower($project_contact->first_name.' '.$project_contact->middle_name.' '.$project_contact->last_name)) }}</strong>
+								<strong>{{ ucwords(strtolower($project_contact->getFullName())) }}</strong>
 							</a>
 						</p>
 						<p>

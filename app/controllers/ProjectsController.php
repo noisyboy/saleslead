@@ -259,18 +259,6 @@ class ProjectsController extends BaseController {
 	}
 
 	/**
-	 * list of assigned projects
-	 */
-	public function getAssigned()
-	{
-		$projects = Project::where('status_id',2)
-			->where('assigned_to',Auth::user()->id)->get();
-		
-		$this->layout->content =  View::make('projects.assigned',compact('projects'));
-		
-	}
-
-	/**
 	 * list of open projects
 	 */
 	public function getListing($id = null)
@@ -284,14 +272,43 @@ class ProjectsController extends BaseController {
 		{
 			$c_groups = ContractorGroup::orderBy('contractor_group')->get();
 
-			$project = Project::find($id);
+			$project = Project::with(array('contacts' => function($query){
+					$query->where('created_by', Auth::user()->id);
+			}))->find($id);
 			
-			$project_contacts = $project->contacts;
-			$this->layout->content = View::make('projects.open_details',compact('c_groups','project','project_contacts','contacts'));
+			$this->layout->content = View::make('projects.open_details',compact('c_groups','project'));
 			
 		}
 	}
 
+
+	/**
+	 * list of assigned projects
+	 */
+	public function getAssigned($id = null)
+	{
+		if(is_null($id))
+		{
+			$projects = Project::where('status_id',2)
+				->where('assigned_to',Auth::user()->id)->get();
+			
+			$this->layout->content =  View::make('projects.assigned',compact('projects'));
+		}
+		else
+		{
+			$c_groups = ContractorGroup::orderBy('contractor_group')->get();
+
+			$project = Project::with(array('contacts' => function($query){
+					$query->where('status_id',2);
+			}))->find($id);
+			
+			$this->layout->content = View::make('projects.assigned_details',compact('c_groups','project'));
+		}
+		
+		
+	}
+
+	
 	
 
 }

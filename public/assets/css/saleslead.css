@@ -25,6 +25,11 @@ a:hover {
 	margin-bottom: 20px;
 }
 
+.sub-header {
+    border-bottom: 1px solid #eee;
+    margin: 0 0 20px;
+    padding-bottom: 9px;
+}
 .btn-primary {
 	background-color: #8cbf26;
 	border-color:  #7caa22;
@@ -95,12 +100,18 @@ a:hover {
 	padding-left: 0px;
 }
 
+.sidebar-box-list .sidebar-title-link .for-approval {
+	color: #dd4b39;
+}
+
 .sidebar-box-list .sidebar-title-link {
 	color: #333333;
 }
 .sidebar-box-list .sidebar-title-link:hover {
 	color: #8cbf26;
 }
+
+
 
 
 .contact-list{

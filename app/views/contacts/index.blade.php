@@ -2,7 +2,7 @@
 <h1 class="page-header">My Contacts</h1>
 
 <div class="page-header-button">
-	{{ HTML::linkRoute('contacts.create', 'New Contact', array(), array('class' => 'btn btn-primary')) }}
+	{{ HTML::link('contacts/create', 'New Contact', array('class' => 'btn btn-primary')) }}
 </div>
 
 <div class="widget widget-table action-table">
@@ -18,9 +18,10 @@
 			</thead>
 			<tbody>
 				@foreach($contacts as $contact)
+
 			  	<tr>
 					<td>
-						{{ HTML::linkRoute('contacts.show', $contact->first_name .' '. $contact->middle_name .' '. $contact->last_name, $contact->id ) }}
+						{{ HTML::linkAction('ContactsController@getShow', $contact->getFullName(), $contact->id ) }}
 					</td>
 					<td>{{ $contact->title }}</td>
 					<td>{{ $contact->company_name }}</td>

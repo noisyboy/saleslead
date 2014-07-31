@@ -63,7 +63,7 @@ Route::group(array('before' => 'auth'), function()
 {
 	Route::get('/', 'DashboardController@getIndex');
 
-   	Route::resource('contacts', 'ContactsController');
+   	
 	
 	Route::resource('areas', 'AreasController');
 	Route::resource('regions', 'RegionsController');
@@ -88,8 +88,8 @@ Route::group(array('before' => 'auth'), function()
 	Route::controller('dashboard','DashboardController');
 
 	Route::controller('projects', 'ProjectsController');
-	
 	Route::controller('roles', 'RolesController');
+	Route::controller('contacts', 'ContactsController');
 
 });
 

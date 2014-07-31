@@ -15,7 +15,7 @@
 				@foreach($projects as $project)
 			  	<tr>
 					<td>
-						{{ HTML::linkAction('ProjectsController@getListing', $project->project_name, $project->id ) }}
+						{{ HTML::linkAction('ProjectsController@getAssigned', $project->project_name, $project->id ) }}
 					</td>
 					<td>
 						{{ $project->project_address }}

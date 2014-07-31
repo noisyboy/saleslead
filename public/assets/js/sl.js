@@ -74,26 +74,26 @@ $(document).ready(function(){
 
 	// typeahead auto complete for adding contact
 	
-	var contacts = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		remote: '/../api/v1/contacts/%QUERY'
-	});
+	// var contacts = new Bloodhound({
+	// 	datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+	// 	queryTokenizer: Bloodhound.tokenizers.whitespace,
+	// 	remote: '/../api/v1/contacts/%QUERY'
+	// });
 	 
-	contacts.initialize();
+	// contacts.initialize();
 	 
-	$('.typeahead').typeahead(null, {
-		name: 'fullname',
-		displayKey: 'first_name',
-		source: contacts.ttAdapter(),
-		templates: {
-			suggestion: Handlebars.compile([
-			'<p class="repo-language">{{title}}</p>',
-			'<p class="repo-name">{{first_name}}</p>',
-			'<p class="repo-description">{{company_name}}</p>'
-			].join(''))
-		} 
-	});
+	// $('.typeahead').typeahead(null, {
+	// 	name: 'fullname',
+	// 	displayKey: 'first_name',
+	// 	source: contacts.ttAdapter(),
+	// 	templates: {
+	// 		suggestion: Handlebars.compile([
+	// 		'<p class="repo-language">{{title}}</p>',
+	// 		'<p class="repo-name">{{first_name}}</p>',
+	// 		'<p class="repo-description">{{company_name}}</p>'
+	// 		].join(''))
+	// 	} 
+	// });
 //--------------------------------------------------------
 	// add contact to project
 	$(".add-contact-sidebar").click(function(){

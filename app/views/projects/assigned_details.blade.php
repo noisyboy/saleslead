@@ -3,7 +3,15 @@
 
 <div class="row">
 	<div class="col-md-3">
-	@include('projects.partials.read_only_details')
+		@include('projects.partials.read_only_details')
+	</div>
+
+	<div class="col-md-5">
+		<div class="form-group">
+			<span>{{ nl2br($project->project_details) }}</span>
+			<a class="pull-right" href="#" data-toggle="modal" data-target="#edit-class">Edit</a>
+		</div>
+		@include('projects.partials.history')
 	</div>
 
 	<div class="col-md-4">
@@ -28,10 +36,10 @@
 						<span class="glyphicon glyphicon-user"></span>
 					</div>
 					<div>
-						
 						<p>
+							
 							<a class="sidebar-title-link sidebar-contact-name {{ ($project_contact->pivot->status_id == 1) ? 'for-approval' : '' }}" href="#">
-								<strong>{{ ucwords(strtolower($project_contact->first_name.' '.$project_contact->middle_name.' '.$project_contact->last_name)) }}</strong>
+								<strong>{{ ucwords(strtolower($project_contact->getFullName())) }}</strong>
 							</a>
 						</p>
 						<p>
