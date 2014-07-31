@@ -9,7 +9,7 @@ class ProjectSubCategoriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		$p_sub_categories = ProjectSubCategory::with('project_category')->get();
+		$p_sub_categories = ProjectSubCategory::all();
 		$this->layout->content = View::make('project_sub_categories.index',compact('p_sub_categories'));
 	}
 

@@ -9,8 +9,9 @@ class ContactsController extends BaseController {
 	 */
 	public function index()
 	{
-		$contacts = Contact::where('created_by',Auth::user()->id)->get();
-		// $contacts = DB::table('contacts')->get();
+		// $contacts = Contact::where('created_by',Auth::user()->id)->get();
+		$user = User::find(Auth::user()->id);
+		$contacts = $user->contacts;
 		$this->layout->content = View::make('contacts.index',compact('contacts'));
 	}
 
@@ -70,7 +71,7 @@ class ContactsController extends BaseController {
 	public function show($id)
 	{
 		// $contact = Contact::find($id);
-		$contact = Contact::with('phones')->with('emails')->find($id);
+		$contact = Contact::find($id);
 
 		foreach (PhoneType::select('id', 'phone_type')->orderBy('id','asc')->get() as $phonetype)
 		{

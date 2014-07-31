@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder {
 
 		// $this->call('UserTableSeeder');
 
-		$this->call('ProjectAppTableSeeder');
-		$this->command->info('Project status table seeded!');
+		// $this->call('ProjectAppTableSeeder');
+		// $this->command->info('Project status table seeded!');
 
 
 		// $this->call('AreaTableSeeder');
@@ -37,6 +37,10 @@ class DatabaseSeeder extends Seeder {
 
 		// $this->call('UserTableSeeder');
 		// $this->command->info('Users Table table seeded!');
+
+		// $this->call('ProjectContactStatusTableSeeder');
+		// $this->command->info('Project contact status table seeded!');
+
 
 	}
 

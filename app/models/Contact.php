@@ -37,4 +37,16 @@ class Contact extends Eloquent {
 	{
 		return $this->belongsToMany('Projects','project_contacts')->withPivot('contractor_group_id');
 	}
+
+	public function getFullName()
+	{
+	    return $this->attributes['first_name'] .' '.$this->attributes['middle_name'].' '.$this->attributes['last_name'];
+	}
+
+	public function user(){
+		return $this->belongsTo('User');
+	}
+
+	
+
 }

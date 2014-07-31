@@ -87,7 +87,7 @@
 							</a>
 						</p>
 						<p>
-							<span class="sidebar-contact-address"></span>
+							<span class="sidebar-contact-company">{{ $project_contact->company_name }}</span>
 							<!-- <br>
 							<span class="sidebar-contact-address">Chicago</span>,
 							<span class="sidebar-contact-address">IL</span> -->
@@ -148,10 +148,12 @@
 				</div>
 				<div class="modal-body">
 					<form role="form" class="project-contact" name="phone">
+						{{ Form::hidden('project_id', $project->id ) }}
 						{{ Form::hidden('group_id', '0', array('id' => 'group_id')) }}
 					  	<div class="form-group">
-					  		{{ Form::label('contact', 'Contact') }}
-					  		{{ Form::text('contact', '', array('class' => 'form-control typeahead', 'placeholder' => 'Contact')) }}  		
+					  		{{ Form::label('contact_id', 'Contact') }}
+					  		{{ Form::text('contact', '', array('class' => 'form-control', 'placeholder' => 'Contact','id' => 'select-contact')) }}  		
+					  		
 					    </div>
 					    <div class="form-group">
 					  		{{ Form::label('role', 'Role') }}

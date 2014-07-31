@@ -9,7 +9,7 @@ class UsersController extends \BaseController {
 	 */
 	public function getIndex()
 	{
-		$users = User::with('department')->get();
+		$users = User::all();
 		$this->layout->content = View::make('users.index',compact('users'));
 	}
 

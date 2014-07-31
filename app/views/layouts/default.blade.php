@@ -14,8 +14,12 @@
     <!-- Bootstrap core CSS -->
     <link href="{{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}}" rel="stylesheet">
 
-     <!-- Typeahead CSS -->
+    <!-- Typeahead CSS -->
     <link href="{{{ asset('assets/plugins/typeahead/css/typeahead.css') }}}" rel="stylesheet">
+
+    <!-- Select2 CSS -->
+    <link href="{{{ asset('assets/plugins/select2-3.5.1/css/select2.css') }}}" rel="stylesheet">
+    <link href="{{{ asset('assets/plugins/select2-3.5.1/css/select2-bootstrap.css') }}}" rel="stylesheet">
 
      <!-- font-font-awesome CSS -->
     <link href="{{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}}" rel="stylesheet">
@@ -107,6 +111,8 @@
 
     <script src="{{{ asset('assets/plugins/typeahead/js/handlebars.js') }}}"></script>  
     <script src="{{{ asset('assets/plugins/typeahead/js/typeahead.bundle.min.js') }}}"></script>    
+
+    <script src="{{{ asset('assets/plugins/select2-3.5.1/js/select2.min.js') }}}"></script>  
 
     <script src="{{{ asset('assets/js/function.js') }}}"></script>
     <script src="{{{ asset('assets/js/sl.js') }}}"></script>

@@ -16,7 +16,7 @@ class Phone extends Eloquent {
 		return $this->belongsTo('Contact');
 	}
 
-	public function phone_type()
+	public function phoneType()
 	{
 		return $this->belongsTo('PhoneType');
 	}

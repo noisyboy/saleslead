@@ -9,13 +9,15 @@ class Area extends Eloquent {
 		'area' => 'required'
 	);
 
+	public function projects()
+	{
+		return $this->hasMany('Project');
+	}
+
 	public function regions()
 	{
 		return $this->hasMany('Region');
 	}
 
-	public function projects()
-	{
-		return $this->hasMany('Project');
-	}
+	
 }

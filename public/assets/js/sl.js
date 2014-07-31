@@ -98,14 +98,14 @@ $(document).ready(function(){
 	// add contact to project
 	$(".add-contact-sidebar").click(function(){
 		var group = $(this).siblings().text();
-		$('#add-contact #myModalLabel').text("Add contact to '" + group + "' group.");
+		$('#add-contact #myModalLabel').text("Tag contact to '" + group + "' group.");
 		$('#add-contact #group_id').val($(this).attr('id'));
 		$('#add-contact').modal('show');
 		return false;
 	});
 
 	$('#add-contact').on('hide.bs.modal', function (e) {
-	  	$(':input','#add-contact')
+		$(':input','#add-contact')
 		  .not(':button, :submit, :reset, :hidden')
 		  .val('')
 		  .removeAttr('checked')
@@ -116,14 +116,50 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
-			url: "/../api/v1/addcontact/" + $('#add-contact #group_id').val(), 
+			url: domain +"/api/v1/addcontact/" + $('#add-contact #group_id').val(), 
 			data: $('form.project-contact').serialize(),
 			success: function(msg){
 				$("#add-contact").modal('hide'); //hide popup 
+				location.reload();
 			},
 			error: function(){
 				alert("failure");
 			}
 		});
+	});
+
+	function formatSelection(contact) {
+		var markup = '<div style="padding: 5px; overflow:hidden;">';
+			markup += '<div style="float: left; margin-left: 5px">';
+			markup += '<div style="padding-bottom: 4px; font-weight: bold; font-size: 14px; line-height: 14px">'+contact.text+'</div>';
+			markup += '<div style=" font-size: 12px">'+contact.company+'</div>';
+			markup += '</div>';
+			markup += '</div>';
+			markup += '<div style="clear:both;"></div>';
+			markup += '</div>';
+		return markup;
+	}
+
+	$("#select-contact").select2({
+		placeholder: "Search for a contact",
+		allowClear: true,
+		minimumInputLength: 3,
+		ajax: { // instead of writing the function to execute the request we use Select2's convenient helper
+			url: domain +"/api/v1/mycontacts", 
+			dataType: 'json',
+			data: function (term, page) {
+				return {
+					q: term, // search term
+					page_limit: 10,
+				};
+			},
+			results: function (data, page) { // parse the results into the format expected by Select2.
+				//console.log(data);
+				// since we are using custom formatting functions we do not need to alter remote JSON data
+				return {results: data.contacts};
+			}
+		},
+		formatResult: formatSelection,
+		escapeMarkup: function(m) { return m; }
 	});
 });

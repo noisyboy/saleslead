@@ -9,7 +9,7 @@ class ProjectCategory extends Eloquent {
 		'project_category' => 'required'
 	);
 
-	public function project_sub_categories()
+	public function projectSubCategories()
 	{
 		return $this->hasMany('ProjectSubCategory');
 	}

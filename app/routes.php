@@ -20,6 +20,8 @@ Route::group(array('prefix' => 'api/v1','before' => 'auth'), function()
     Route::get('contacts/{id}','api\ContactsController@search_contact');
     Route::get('sub_categories/{id}','api\ProjectSubCategoriesController@sub_categories');
 
+    Route::get('mycontacts','api\ContactsController@getMyContacts');
+
 
     Route::post('addcontact/{id?}','api\ProjectsController@postAddContact');
 });

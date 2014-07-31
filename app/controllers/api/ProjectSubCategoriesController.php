@@ -24,7 +24,7 @@ class ProjectSubCategoriesController extends \BaseController {
 		
 
 		return \Response::json(array(
-			'error' => false,
+			'status' => 'success',
 			'subcategories' => $sub
 			));
 	}

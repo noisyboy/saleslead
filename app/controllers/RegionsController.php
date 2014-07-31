@@ -9,7 +9,7 @@ class RegionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$regions = Region::with('area')->get();
+		$regions = Region::all();
 		$this->layout->content = View::make('regions.index',compact('regions'));
 	}
 

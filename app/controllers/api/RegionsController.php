@@ -24,7 +24,7 @@ class RegionsController extends \BaseController {
 		
 
 		return \Response::json(array(
-			'error' => false,
+			'status' => 'success',
 			'regions' => $regions
 			));
 	}

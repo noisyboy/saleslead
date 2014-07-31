@@ -106,8 +106,13 @@ a:hover {
 .contact-list{
 }
 .sidebar-box-list p{
-	margin-bottom: 8px;
+	margin-bottom: 0px;
 } 
+.sidebar-contact-company{
+	font-size: 12px;
+	font-style: italic;
+}
+
 
 .sidebar-contact-address {
 	font-size: 12px;
@@ -295,3 +300,18 @@ li.item.activity:before {
     font-size: 16px;
     margin-bottom: 1.5em;
 }
+
+/*override select2 css*/
+.select2-results .select2-no-results, .select2-results .select2-searching, .select2-results .select2-selection-limit {
+    background-color: #FFFFFF;
+    color: #8cbf26;
+}
+.select2-results li {
+    background-image: none;
+    color: #333;
+}
+.select2-results .select2-highlighted {
+    background-color: #8cbf26;
+    color: #FFFFFF;
+}
+/*end*/

@@ -36,6 +36,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsTo('Department');
 	}
 
+	public function getFullname()
+	{
+	    return $this->attributes['first_name'] .' '.$this->attributes['middle_name'].' '.$this->attributes['last_name'];
+	}
+
+	public function createdProjects()
+	{
+		return $this->hasMany('Project','created_by');
+	}
+
+	public function contacts()
+	{
+		return $this->hasMany('Contact','created_by');
+	}
+
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -82,14 +97,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	    return 'remember_token';
 	}
 
-	public function getFullName()
-	{
-	    return $this->attributes['first_name'] .' '.$this->attributes['middle_name'].' '.$this->attributes['last_name'];
-	}
 
-	public function createdProjects()
-	{
-		return $this->hasMany('Project','created_by');
-	}
 
 }

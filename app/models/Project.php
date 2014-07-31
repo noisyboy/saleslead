@@ -44,30 +44,30 @@ class Project extends Eloquent {
 		return $this->belongsToMany('Contact','project_contacts')->withPivot('contractor_group_id');
 	}
 
-	public function project_classification()
+	public function projectClassification()
 	{
 		return $this->belongsTo('ProjectClassification');
 	}
 
-	public function project_category()
+	public function projectCategory()
 	{
 		return $this->belongsTo('ProjectCategory');
 	}
 
-	public function project_sub_category()
+	public function projectSubCategory()
 	{
 		return $this->belongsTo('ProjectSubCategory');
 	}
 
-	public function project_stage()
+	public function projectStage()
 	{
 		return $this->belongsTo('ProjectStage');
 	}
 
-	public function project_status()
-	{
-		return $this->belongsTo('ProjectStatus');
+	public function createdBy(){
+		return $this->belongsTo('User','created_by');
 	}
+
 
 	public function area()
 	{
@@ -79,7 +79,8 @@ class Project extends Eloquent {
 		return $this->belongsTo('Region');
 	}
 
-	public function createdBy(){
-		return $this->belongsTo('User','created_by');
+	public function projectStatus()
+	{
+		return $this->belongsTo('ProjectStatus');
 	}
 }

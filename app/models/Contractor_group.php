@@ -11,7 +11,7 @@ class ContractorGroup extends Eloquent {
 		'contractor_group' => 'required'
 	);
 
-	public function project_contacts()
+	public function projectContacts()
 	{
 		return $this->hasMany('ProjectContact');
 	}

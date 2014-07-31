@@ -10,7 +10,7 @@ class ProjectSubCategory extends Eloquent{
 		'project_category_id' => 'required'
 	);	
 
-	public function project_category(){
+	public function projectCategory(){
 		return $this->belongsTo('ProjectCategory');
 	}
 

@@ -2,9 +2,10 @@
 
 class ProjectContact extends Eloquent {
 	
-	public function contractor_group(){
+	public function contractorGroup(){
 		return $this->belongsTo('ContractorGroup');
 	}
 
-
+	
+	
 }
