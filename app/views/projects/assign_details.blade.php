@@ -72,7 +72,7 @@
 			</div>
 		</div>
 
-		{{ Form::open(array('action' => array('ProjectsController@postAssign',$project->id), 'class' => 'form-horizontal', 'role' => 'form')) }}
+		{{ Form::open(array('action' => array('ProjectsController@postAssigning',$project->id), 'class' => 'form-horizontal', 'role' => 'form')) }}
 
 		<div id="assign_to_id" class="form-group">
 			{{ Form::label('assign_to_id', 'Assign To',array('class' => 'col-sm-2 control-label')) }}
@@ -84,7 +84,7 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				{{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
-				{{ HTML::link('projects/assign', 'Back', array('class' => 'btn btn-default')) }}
+				{{ HTML::link('projects/assigning', 'Back', array('class' => 'btn btn-default')) }}
 			</div>
 		</div>
 		{{ Form::close() }}

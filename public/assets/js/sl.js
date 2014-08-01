@@ -162,4 +162,9 @@ $(document).ready(function(){
 		formatResult: formatSelection,
 		escapeMarkup: function(m) { return m; }
 	});
+//-------------------------------------------------------------------
+	// process tagged contacts
+	if($('#tagged-contacts').length){
+		
+	}
 });

@@ -30,6 +30,9 @@ class PermissionTableSeeder extends Seeder{
                 	'updated_at' => new DateTime),  
 				array('name' => 'manage_projectstatuses','display_name' => 'Manage Project Statuses',
 					'created_at' => new DateTime,
+                	'updated_at' => new DateTime), 
+                array('name' => 'manage_new_projects','display_name' => 'Manage New Projects',
+					'created_at' => new DateTime,
                 	'updated_at' => new DateTime),  
 			));
     }

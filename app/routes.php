@@ -22,7 +22,6 @@ Route::group(array('prefix' => 'api/v1','before' => 'auth'), function()
 
     Route::get('mycontacts','api\ContactsController@getMyContacts');
 
-
     Route::post('addcontact/{id?}','api\ProjectsController@postAddContact');
 });
 
@@ -63,8 +62,6 @@ Route::group(array('before' => 'auth'), function()
 {
 	Route::get('/', 'DashboardController@getIndex');
 
-   	
-	
 	Route::resource('areas', 'AreasController');
 	Route::resource('regions', 'RegionsController');
 	Route::resource('contractorgroups','ContractorGroupsController');

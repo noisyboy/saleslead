@@ -67,6 +67,13 @@ a:hover {
 .sidebar-contacts ul {
 	list-style: none outside none;
 }
+.sidebar-contacts ul .contact-detail{
+	float: right;
+	/*margin-left: 20px;*/
+	/*padding-left: 00px;*/
+	width: 100%;
+	margin-bottom: 5px;
+}
 .sidebar-heading{
 	display: table;
 	padding-bottom: 0px;
@@ -100,13 +107,14 @@ a:hover {
 	padding-left: 0px;
 }
 
-.sidebar-box-list .sidebar-title-link .for-approval {
-	color: #dd4b39;
-}
-
 .sidebar-box-list .sidebar-title-link {
 	color: #333333;
 }
+
+.sidebar-box-list .for-approval {
+	color: #dd4b39;
+}
+
 .sidebar-box-list .sidebar-title-link:hover {
 	color: #8cbf26;
 }
@@ -114,8 +122,9 @@ a:hover {
 
 
 
-.contact-list{
+.sidebar-box-list .contact-list{
 }
+
 .sidebar-box-list p{
 	margin-bottom: 0px;
 } 
@@ -131,20 +140,47 @@ a:hover {
 .sidebar-contact-address-2 {
 	font-size: 12px;
 }
+
 .sidebar-box-list li {
 	display: table-row;
-	line-height: 18px;
+	/*line-height: 18px;*/
+	/*padding: 10px;*/
+	
 }
+
+.sidebar-box-list li .contact-group{
+	border-bottom: 1px solid #BBB;
+	padding-top: 5px;
+}
+
+.sidebar-box-list li:first-child .contact-group{
+	padding-top: 0px;
+  
+}
+.sidebar-box-list li:last-child .contact-group{
+	border-bottom: none;
+  
+}
+
+
+
 .sidebar-box-list li div {
 	display: table-cell;
 	padding: 1px;
 	vertical-align: middle;
 }
+
+
 .sidebar-box-list li div.check-input {
 	color: #999999;
 	text-align: center;
 	vertical-align: top;
+	float: left;
+	margin-right: 5px;
 	
+}
+.contact-detail {
+	margin-left: 10px;
 }
 .call-btn {
 	font-weight: normal;

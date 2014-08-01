@@ -62,7 +62,11 @@
                 <li>{{ HTML::link('projects/create','New Project') }}</li>
                 <li>{{ HTML::link('projects/assigned', 'Assigned Projects') }}</li>
                 <li>{{ HTML::link('projects/listing','Open Projects') }}</li>
-                <li>{{ HTML::link('projects/assign','Assign Projects') }}</li>
+                @if (Auth::user()->can('manage_new_projects'))
+                <li>{{ HTML::link('projects/assigning','Assign Projects') }}</li>
+                @endif
+
+               
               </ul>
             </li>
              <li {{ Request::is('contacts*') ? 'class="active"' : '' }}>

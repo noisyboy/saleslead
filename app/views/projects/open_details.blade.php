@@ -30,7 +30,7 @@
 					<div>
 						
 						<p>
-							<a class="sidebar-title-link sidebar-contact-name {{ ($project_contact->pivot->status_id == 1) ? 'for-approval' : '' }}" href="#">
+							<a class="sidebar-title-link sidebar-contact-name {{($project_contact->pivot->status_id == 1)?'for-approval':''}}" href="#">
 								<strong>{{ ucwords(strtolower($project_contact->first_name.' '.$project_contact->middle_name.' '.$project_contact->last_name)) }}</strong>
 							</a>
 						</p>

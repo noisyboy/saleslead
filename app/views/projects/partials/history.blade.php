@@ -1,13 +1,14 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
-   <li class="active"><a href="#specs" role="tab" data-toggle="tab">Specifications</a></li>
+   <li class="active"><a href="#notification" role="tab" data-toggle="tab">Notifications</a></li>
   <li><a href="#files" role="tab" data-toggle="tab">Files</a></li>
+  <li><a href="#note" role="tab" data-toggle="tab">Add a Note</a></li>
   <li><a href="#note" role="tab" data-toggle="tab">Add a Note</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div class="tab-pane tabbed-action-content active" id="specs">...</div>
+  <div class="tab-pane tabbed-action-content active" id="notification">...</div>
   <div class="tab-pane tabbed-action-content" id="files">...</div>
   <div class="tab-pane tabbed-action-content" id="note">
   	<form role="form">

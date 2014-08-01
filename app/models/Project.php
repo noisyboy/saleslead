@@ -41,7 +41,7 @@ class Project extends Eloquent {
 
 	public function contacts()
 	{
-		return $this->belongsToMany('Contact','project_contacts')->withPivot('contractor_group_id','role','status_id');
+		return $this->belongsToMany('Contact','project_contacts')->withPivot('contractor_group_id','role','status_id','id');
 	}
 
 	public function projectClassification()

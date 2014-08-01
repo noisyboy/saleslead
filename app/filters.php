@@ -113,6 +113,7 @@ Route::filter('csrf', function()
         throw new Illuminate\Session\TokenMismatchException;
 });
 
+Entrust::routeNeedsPermission( 'projects/assigning*', 'manage_new_projects',Redirect::to('/access/denied'));
 
 Entrust::routeNeedsPermission( 'areas*', 'manage_areas',Redirect::to('/access/denied'));
 Entrust::routeNeedsPermission( 'regions*', 'manage_regions',Redirect::to('/access/denied'));

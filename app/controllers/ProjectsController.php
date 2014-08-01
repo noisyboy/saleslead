@@ -193,7 +193,7 @@ class ProjectsController extends BaseController {
 	/**
 	 * list of projects for assigning
 	 */
-	public function getAssign($id = null)
+	public function getAssigning($id = null)
 	{
 		if(is_null($id)){
 			$projects = Project::where('status_id',1)->get();
@@ -222,7 +222,7 @@ class ProjectsController extends BaseController {
 		
 	}
 
-	public function postAssign($id = null)
+	public function postAssigning($id = null)
 	{
 		if((is_null($id)) || (!is_numeric($id))){
 			$this->missingMethod();
@@ -246,11 +246,11 @@ class ProjectsController extends BaseController {
 					// redirect
 					Session::flash('class', 'alert alert-success');
 					Session::flash('message', 'Successfully assigned project!');
-					return Redirect::to('projects/assign');
+					return Redirect::to('projects/assigning');
 				}
 				else
 				{
-					return Redirect::action('ProjectsController@postAssign',array($project->id))
+					return Redirect::action('ProjectsController@postAssigning',array($project->id))
 						->withInput()
 						->withErrors($validator);
 				}
@@ -287,6 +287,7 @@ class ProjectsController extends BaseController {
 	 */
 	public function getAssigned($id = null)
 	{
+
 		if(is_null($id))
 		{
 			$projects = Project::where('status_id',2)
@@ -298,17 +299,68 @@ class ProjectsController extends BaseController {
 		{
 			$c_groups = ContractorGroup::orderBy('contractor_group')->get();
 
-			$project = Project::with(array('contacts' => function($query){
-					$query->where('status_id',2);
-			}))->find($id);
-			
+			// $project = Project::with(array('contacts' => function($query){
+			// 		$query->where('status_id',2);
+			// }))->find($id);
+			$project = Project::with('contacts')->find($id);
+
+
 			$this->layout->content = View::make('projects.assigned_details',compact('c_groups','project'));
+
+			// echo '<pre>';
+			// dd(\DB::getQueryLog());
+			// echo '</pre>';
 		}
 		
 		
 	}
 
 	
-	
+	/**
+	 * Update tagged contacts
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function putTaggedcontact($id){
+		$project_contact = ProjectContact::find($id);
+		$project_id = Input::get('project_id');
 
+		if($project_contact->assigned_to == Auth::user()->id){
+			if(!empty($project_contact)){
+				// dd(Input::all());
+				$rules = array('project_id' => 'required|integer|min:1',
+					'submit' => 'required');
+				$validator = Validator::make(Input::only('project_id','submit'), $rules);
+
+				if($validator->passes())
+				{	
+					$submit = Input::get('submit');
+					if($submit == 'Confirm'){
+						$project_contact->status_id = 2;
+					}else{
+						$project_contact->status_id = 3;
+					}
+					
+					$project_contact->save();
+					// redirect
+					Session::flash('class', 'alert alert-success');
+					Session::flash('message', 'Successfully updated tagged contact!');
+				}
+				else
+				{
+					Session::flash('class', 'alert alert-danger');
+					Session::flash('message', 'Cannot update selected tagged contact!');
+				}
+				
+			}else{
+				Session::flash('class', 'alert alert-danger');
+				Session::flash('message', 'Cannot update selected tagged contact!');
+			}
+		}else{
+			Session::flash('class', 'alert alert-danger');
+			Session::flash('message', 'Cannot update selected tagged contact!');
+		}
+		return Redirect::to('projects/assigned/'.$project_id);
+	}
 }
