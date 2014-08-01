@@ -78,8 +78,8 @@ Route::group(array('before' => 'auth'), function()
 		return View::make('errors.403_error');
 	});
 
-	Route::post('phones', 'PhonesController@store');
-	Route::post('emails', 'EmailsController@store');
+	Route::post('contacts/phones', 'PhonesController@putStore');
+	Route::post('contacts/emails', 'EmailsController@putStore');
 
 	Route::controller('users','UsersController');
 	Route::controller('dashboard','DashboardController');

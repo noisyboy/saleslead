@@ -19,7 +19,7 @@ class ContactsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getCreate()
 	{
 		$this->layout->content = View::make('contacts.create');
 	}
@@ -30,7 +30,7 @@ class ContactsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function postStore()
 	{
 		$input = Input::only('company_name', 'address','first_name','middle_name','last_name','title');
 		$validation = Validator::make($input, Contact::$rules);
@@ -53,7 +53,7 @@ class ContactsController extends BaseController {
 			return Redirect::route('contacts.show',array($contact->id));
 		}else
 		{
-			return Redirect::route('contacts.create')
+			return Redirect::to('contacts/create')
 				->withInput()
 				->withErrors($validation);
 		}

@@ -41,6 +41,7 @@ $(document).ready(function(){
 	$("#phone-modal input#submit").click(function(){
 		$.ajax({
 			type: "POST",
+			headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
 			url: "../phones", 
 			data: $('form.contact-phone').serialize(),
 			success: function(msg){
@@ -56,8 +57,9 @@ $(document).ready(function(){
 	$("#email-modal input#submit").click(function(){
 		$.ajax({
 			type: "POST",
+			headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
 			url: "../emails", 
-			data: $('form.contact-email').serialize() + "&id=" + morevalue,
+			data: $('form.contact-email').serialize(),
 			success: function(msg){
 				$("#email-modal").modal('hide'); //hide popup 
 				location.reload();

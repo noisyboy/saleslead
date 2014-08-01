@@ -25,7 +25,7 @@ class Contact extends Eloquent {
 
 	public function phones()
 	{
-		return $this->hasMany('Phone')->with('phone_type');
+		return $this->hasMany('Phone')->with('phonetype');
 	}
 
 	public function emails()
@@ -35,7 +35,7 @@ class Contact extends Eloquent {
 
 	public function projects()
 	{
-		return $this->belongsToMany('Project','project_contacts')->withPivot('contractor_group_id');
+		return $this->belongsToMany('Project','project_contacts')->withPivot('contractor_group_id','role','status_id','id');
 	}
 
 	public function getFullName()

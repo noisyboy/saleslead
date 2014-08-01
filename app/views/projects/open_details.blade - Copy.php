@@ -88,9 +88,6 @@
 						</p>
 						<p>
 							<span class="sidebar-contact-address"></span>
-							<!-- <br>
-							<span class="sidebar-contact-address">Chicago</span>,
-							<span class="sidebar-contact-address">IL</span> -->
 						</p>
 						
 						@foreach($project_contact->phones as $phone)

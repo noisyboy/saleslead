@@ -41,34 +41,6 @@
 							<span class="sidebar-contact-address">IL</span> -->
 						</p>
 						
-						@foreach($project_contact->phones as $phone)
-						<p>
-							<span class="sidebar-contact-phone">
-								<span>
-								<a class="call-btn contact-btn btn-mini" href="callto:+18009409650">
-								<span class="glyphicon glyphicon-earphone"></span>
-								+ {{ $phone->phone }}
-								</a>
-								</span>
-							</span>
-							<small>{{ $phone->phone_type->phone_type }}</small>
-							<br>
-						</p>
-						@endforeach
-						<br>
-						@foreach($project_contact->emails as $email)
-						<p>
-							<span class="sidebar-contact-email">
-								<span>
-								<a class="call-btn contact-btn btn-mini" href="mailto:{{ $email->email }}">
-									<span class="glyphicon glyphicon-envelope"></span>
-									{{ $email->email }}
-								</a>
-								</span>
-							</span>
-							<br>
-						</p>
-						@endforeach
 					</div>
 				</li>
 				@endif

@@ -1,5 +1,5 @@
 @section('content')
-<h1 class="page-header">{{ $contact->company_name }}</h1>
+<h1 class="page-header">{{ $contact->getFullName() }}</h1>
 
 <div class="row">
 	<div class="col-md-3">
@@ -7,6 +7,7 @@
 	</div>
 
 	<div class="col-md-9">
+
 		<h3 class="sub-header">Projects Involved</h3>
 		<div class="widget widget-table action-table">
 			<!-- /widget-header -->
@@ -16,6 +17,7 @@
 					  	<tr>
 							<th>Project Name</th>
 							<th>Project Address</th>
+							<th>Role</th>
 					  	</tr>
 					</thead>
 					<tbody>
@@ -27,6 +29,9 @@
 							<td>
 								{{ $project->project_address }}
 							</td>	
+							<td>
+								{{ $project->pivot->role }}
+							</td>
 					  	</tr>
 					  	@endforeach
 					</tbody>

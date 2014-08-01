@@ -69,11 +69,19 @@ a:hover {
 }
 .sidebar-contacts ul .contact-detail{
 	float: right;
-	/*margin-left: 20px;*/
-	/*padding-left: 00px;*/
 	width: 100%;
-	margin-bottom: 5px;
+	
 }
+.sidebar-contacts ul li .contact-detail {
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #eee;
+}
+
+.sidebar-contacts ul li:last-child .contact-detail {
+	border-bottom: none;
+}
+
 .sidebar-heading{
 	display: table;
 	padding-bottom: 0px;
@@ -108,7 +116,8 @@ a:hover {
 }
 
 .sidebar-box-list .sidebar-title-link {
-	color: #333333;
+	/*color: #333333;*/
+	color: #8cbf26;
 }
 
 .sidebar-box-list .for-approval {

@@ -2,7 +2,7 @@
 
 class PhonesController extends BaseController {
 
-	public function store()
+	public function putStore()
 	{
 		$input = Input::only('phone', 'phone_type_id','contact_id');
 		$validation = Validator::make($input, Phone::$rules);

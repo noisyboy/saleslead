@@ -9,10 +9,10 @@
 	</div>
 
 	<div class="col-md-5">
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<span>{{ nl2br($project->project_details) }}</span>
 			<a class="pull-right" href="#" data-toggle="modal" data-target="#edit-class">Edit</a>
-		</div>
+		</div> -->
 		@include('projects.partials.history')
 	</div>
 
@@ -65,9 +65,9 @@
 		<div class="sidebar-contacts sidebar-section">
 			<header class="sidebar-heading">
 				<h6>{{ ucwords(strtolower($c_group->contractor_group))}}</h6>
-				<a id="{{  $c_group->id }} " class="add-contact-sidebar" href="#" >
+				<!-- <a id="{{ $c_group->id }} " class="add-contact-sidebar" href="#" >
 					<span class="glyphicon glyphicon-plus"></span>
-				</a>
+				</a> -->
 			</header>
 			
 			<ul class="sidebar-box-list">
@@ -90,36 +90,6 @@
 						<p>
 							<span class="sidebar-contact-company">{{ $project_contact->company_name }}</span>
 						</p>
-						
-						@foreach($project_contact->phones as $phone)
-						<p>
-							<span class="sidebar-contact-phone">
-								<span>
-								<a class="call-btn contact-btn btn-mini" href="callto:+18009409650">
-								<span class="glyphicon glyphicon-earphone"></span>
-								+ {{ $phone->phone }}
-								</a>
-								</span>
-							</span>
-							<small>{{ $phone->phone_type->phone_type }}</small>
-							<br>
-						</p>
-						<br>
-						@endforeach
-						
-						@foreach($project_contact->emails as $email)
-						<p>
-							<span class="sidebar-contact-email">
-								<span>
-								<a class="call-btn contact-btn btn-mini" href="mailto:{{ $email->email }}">
-									<span class="glyphicon glyphicon-envelope"></span>
-									{{ $email->email }}
-								</a>
-								</span>
-							</span>
-							<br>
-						</p>
-						@endforeach
 					</div>
 				</li>
 				@endif

@@ -75,7 +75,7 @@
             
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
+            <li {{ Request::is('departments*','roles*','users*') ? 'class="active"' : '' }} class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 @include('layouts._file_maintenance')
