@@ -54,7 +54,8 @@ class ProjectsController extends BaseController {
 		}
 
 		$this->layout->content = View::make('projects.create',compact('areas',
-			'project_classifications','project_categories','project_stages','project_statuses'));
+			'project_classifications','project_categories','project_stages','project_statuses',
+			'cities'));
 	}
 
 
@@ -66,36 +67,61 @@ class ProjectsController extends BaseController {
 	public function postStore()
 	{
 		$input = Input::only('project_name',
-		 	'project_address',
-		 	'area_id',
-		 	'region_id',
-		 	'project_classification_id',
+			'number',
+			'street1',
+			'street2',
+			'city',
+			'province',
+			'projectowner_id',
+			'area_id',
+			'region_id',
+			'project_classification_id',
 			'project_category_id',
 			'project_sub_category_id',
 			'project_stage_id',
 			'project_details',
-			'project_status_id');
-		$validation = Validator::make($input, Project::$rules);
+			'project_status_id','estimated');
+		$rules = array();
+		// $rules = array('project_name' => 'required',
+		// 	'area_id' => 'required|integer|min:1',
+		// 	'region_id' => 'required|integer|min:1',
+		// 	'projectowner_id' => 'required|integer|min:1',
+		// 	'project_classification_id' => 'required|integer|min:1',
+		// 	'project_category_id' => 'required|integer|min:1',
+		// 	'project_stage_id' => 'required|integer|min:1',
+		// 	'project_status_id' => 'required|integer|min:1',
+		// 	'estimated' => 'required|numeric');
+
+		$messages = array(
+			'required' => 'This field is required.',
+			'integer' => 'This field is required.',
+			'min' => 'This field is required.');
+
+		$validation = Validator::make($input,$rules,$messages);
 
 		if($validation->passes())
 		{
-			// $project = Project::create($input);
+			dd(Input::all());
+			// $project = new Project;
+			// $project->project_name = Str::upper(Input::get('project_name'));
+			// // $project->project_address = Str::upper(Input::get('project_address'));
+			// $project->number = Str::upper(Input::get('number'));
+			// $project->street1 = Str::upper(Input::get('number'));
+			// $project->street2 = Str::upper(Input::get('number'));
+			// $project->city = Str::upper(Input::get('number'));
+			// $project->province = Str::upper(Input::get('number'));
+			// $project->area_id = Input::get('area_id');
+			// $project->region_id = Input::get('region_id');
+			// $project->project_classification_id = Input::get('project_classification_id');
+			// $project->project_category_id = Input::get('project_category_id');
+			// $project->project_stage_id = Input::get('project_stage_id');
+			// $project->project_details = Input::get('project_details');
+			// $project->project_status_id = Input::get('project_status_id');
+			// $project->created_by = Auth::user()->id;
+			// $project->save();
 
-			$project = new Project;
-			$project->project_name = Str::upper(Input::get('project_name'));
-			$project->project_address = Str::upper(Input::get('project_address'));
-			$project->area_id = Input::get('area_id');
-			$project->region_id = Input::get('region_id');
-		    $project->project_classification_id = Input::get('project_classification_id');
-		    $project->project_category_id = Input::get('project_category_id');
-		    $project->project_stage_id = Input::get('project_stage_id');
-		    $project->project_details = Input::get('project_details');
-		    $project->project_status_id = Input::get('project_status_id');
-		    $project->created_by = Auth::user()->id;
-		    $project->save();
-
-			Session::flash('message', 'Successfully created project!');
-			return Redirect::action('ProjectsController@getShow',array($project->id));
+			// Session::flash('message', 'Successfully created project!');
+			// return Redirect::action('ProjectsController@getShow',array($project->id));
 		}
 		else
 		{

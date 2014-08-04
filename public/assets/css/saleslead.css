@@ -371,3 +371,10 @@ li.item.activity:before {
     color: #FFFFFF;
 }
 /*end*/
+
+/*error css*/
+.error{
+	font-style: italic;
+	color: #a94442;
+}
+/*end*/

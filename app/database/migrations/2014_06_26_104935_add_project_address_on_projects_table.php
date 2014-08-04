@@ -34,6 +34,7 @@ class AddProjectAddressOnProjectsTable extends Migration {
 			$t->dropForeign('projects_area_id_foreign');
 			$t->dropForeign('projects_region_id_foreign');
 			$t->dropColumn(array('project_address','area_id','region_id'));
+			$t->string('project_address')->after('project_name');
 		});
 	}
 

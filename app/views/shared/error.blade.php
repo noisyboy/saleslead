@@ -1,5 +1,5 @@
 @if ($errors->any())
-<div class="col-md-offset-2 alert alert-danger " >
+<div class="alert alert-danger " >
 	@if(Session::has('message'))
         <p class="error">{{ Session::get('message') }}</p>
     @endif
