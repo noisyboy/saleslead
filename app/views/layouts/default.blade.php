@@ -127,5 +127,9 @@
 		<script src="{{{ asset('assets/js/function.js') }}}"></script>
 		
 		<script src="{{{ asset('assets/js/sl.js') }}}"></script>
+
+		@section('script')
+            
+        @show
 	</body>
 </html>

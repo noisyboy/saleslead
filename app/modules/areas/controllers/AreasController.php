@@ -1,6 +1,8 @@
-<?php
+<?php namespace App\Modules\Areas\Controllers;
 
-class AreasController extends BaseController {
+
+
+class AreasController extends \BaseController {
 
 	
 

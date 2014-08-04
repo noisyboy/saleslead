@@ -59,7 +59,7 @@
 	<div class="form-group">
 		{{ Form::label('projectowner_id', 'Project Owner') }}
 		{{ Form::errorMsg('projectowner_id', $errors) }}
-		{{ Form::text('projectowner_id', '', array('class' => 'form-control', 'placeholder' => 'Project Owner','id' => 'select-contact')) }}  		
+		{{ Form::text('projectowner_id', '', array('class' => 'form-control', 'placeholder' => 'Project Owner','id' => 'projectowner_id')) }}  		
 	</div>
 
 	<div id="area-select" class="form-group">
@@ -110,4 +110,12 @@
 
 	{{ Form::close() }}
 </div>
+@stop
+
+@section('script')
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#projectowner_id').select2_function();
+	});
+</script>
 @stop
