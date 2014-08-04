@@ -24,6 +24,12 @@
      <!-- font-font-awesome CSS -->
     <link href="{{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}}" rel="stylesheet">
 
+    <!-- Timeline CSS -->
+    <link href="{{{ asset('assets/css/timeline.css') }}}" rel="stylesheet">
+
+     <!-- Fullcalendar CSS -->
+    <link href="{{{ asset('assets/plugins/fullcalendar/fullcalendar.css') }}}" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="{{{ asset('assets/css/saleslead.css') }}}" rel="stylesheet">
 
@@ -119,6 +125,7 @@
     <script src="{{{ asset('assets/plugins/select2-3.5.1/js/select2.min.js') }}}"></script>  
 
     <script src="{{{ asset('assets/js/function.js') }}}"></script>
+    
     <script src="{{{ asset('assets/js/sl.js') }}}"></script>
   </body>
 </html>

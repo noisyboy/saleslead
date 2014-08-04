@@ -87,6 +87,7 @@ Route::group(array('before' => 'auth'), function()
 	Route::controller('projects', 'ProjectsController');
 	Route::controller('roles', 'RolesController');
 	Route::controller('contacts', 'ContactsController');
+	Route::controller('projectcontacts','ProjectContactsController');
 
 });
 

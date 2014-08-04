@@ -323,10 +323,13 @@ class ProjectsController extends BaseController {
 	 * @return Response
 	 */
 	public function putTaggedcontact($id){
+		// dd($id);
 		$project_contact = ProjectContact::find($id);
+		$project = Project::find($project_contact->project_id);
+		// dd($project);
 		$project_id = Input::get('project_id');
 
-		if($project_contact->assigned_to == Auth::user()->id){
+		if($project->assigned_to == Auth::user()->id){
 			if(!empty($project_contact)){
 				// dd(Input::all());
 				$rules = array('project_id' => 'required|integer|min:1',

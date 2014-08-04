@@ -6,6 +6,8 @@ class ProjectContact extends Eloquent {
 		return $this->belongsTo('ContractorGroup');
 	}
 
-	
+	public function contact(){
+		return $this->belongsTo('Contact');
+	}
 	
 }
