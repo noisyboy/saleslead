@@ -1,6 +1,6 @@
 <?php namespace App\Modules\Areas\Controllers;
 
-
+use Area, View, Input, Validator, Session, Redirect ;
 
 class AreasController extends \BaseController {
 
@@ -11,10 +11,10 @@ class AreasController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getIndex()
 	{
 		$areas = Area::all();
-		$this->layout->content = View::make('areas.index',compact('areas'));
+		$this->layout->content = View::make('areas::index',compact('areas'));
 	}
 
 
@@ -23,9 +23,9 @@ class AreasController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getCreate()
 	{
-		$this->layout->content = View::make('areas.create');
+		$this->layout->content = View::make('areas::create');
 	}
 
 
@@ -34,7 +34,7 @@ class AreasController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function postStore()
 	{
 		$input = Input::only('area');
 		$validation = Validator::make($input, Area::$rules);
@@ -43,7 +43,7 @@ class AreasController extends \BaseController {
 		{
 			Area::create($input);
 			Session::flash('message', 'Successfully created area!');
-			return Redirect::route('areas.index');
+			return Redirect::to('areas');
 		}else
 		{
 			return Redirect::route('areas.create')
@@ -59,9 +59,9 @@ class AreasController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function getShow($id)
 	{
-		//
+		$this->layout->content = View::make('areas::create');
 	}
 
 

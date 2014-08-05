@@ -62,7 +62,7 @@ Route::group(array('before' => 'auth'), function()
 {
 	Route::get('/', 'DashboardController@getIndex');
 
-	Route::resource('areas', 'AreasController');
+	// Route::resource('areas', 'AreasController');
 	Route::resource('regions', 'RegionsController');
 	Route::resource('contractorgroups','ContractorGroupsController');
 	Route::resource('projectclassifications','ProjectClassificationsController');
