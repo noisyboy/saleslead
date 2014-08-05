@@ -74,7 +74,6 @@ class ContactsController extends BaseController {
 			$contact->save();
 
 			$contact->contractorGroup()->sync(Input::get('c_group'));
-
 			Session::flash('class', 'alert alert-success');
 			Session::flash('message', 'Successfully created contact!');
 
