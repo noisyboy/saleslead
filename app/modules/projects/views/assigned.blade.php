@@ -1,9 +1,5 @@
 @section('content')
-<h1 class="page-header">Areas</h1>
-
-<div class="page-header-button">
-	{{ HTML::linkRoute('areas.create', 'New Area', array(), array('class' => 'btn btn-primary')) }}
-</div>
+<h1 class="page-header">Assigned Projects</h1>
 
 <div class="widget widget-table action-table">
 	<!-- /widget-header -->
@@ -11,15 +7,19 @@
 	  	<table class="table table-striped table-bordered">
 			<thead>
 			  	<tr>
-					<th>Area</th>
+					<th>Project Name</th>
+					<th>Project Address</th>
 			  	</tr>
 			</thead>
 			<tbody>
-				@foreach($areas as $area)
+				@foreach($projects as $project)
 			  	<tr>
 					<td>
-						{{ HTML::linkRoute('areas.show', $area->area, $area->id ) }}
+						{{ HTML::linkAction('ProjectsController@getAssigned', $project->project_name, $project->id ) }}
 					</td>
+					<td>
+						{{ $project->project_address }}
+					</td>	
 			  	</tr>
 			  	@endforeach
 			</tbody>
