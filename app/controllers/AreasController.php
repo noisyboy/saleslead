@@ -1,6 +1,4 @@
-<?php namespace App\Modules\Areas\Controllers;
-
-use Area, View, Input, Validator, Session, Redirect ;
+<?php 
 
 class AreasController extends \BaseController {
 
@@ -14,7 +12,7 @@ class AreasController extends \BaseController {
 	public function getIndex()
 	{
 		$areas = Area::all();
-		$this->layout->content = View::make('areas::index',compact('areas'));
+		$this->layout->content = View::make('areas.index',compact('areas'));
 	}
 
 
@@ -25,7 +23,7 @@ class AreasController extends \BaseController {
 	 */
 	public function getCreate()
 	{
-		$this->layout->content = View::make('areas::create');
+		$this->layout->content = View::make('areas.create');
 	}
 
 
@@ -43,7 +41,7 @@ class AreasController extends \BaseController {
 		{
 			Area::create($input);
 			Session::flash('message', 'Successfully created area!');
-			return Redirect::to('areas');
+			return Redirect::route('areas.index');
 		}else
 		{
 			return Redirect::route('areas.create')
@@ -61,7 +59,7 @@ class AreasController extends \BaseController {
 	 */
 	public function getShow($id)
 	{
-		$this->layout->content = View::make('areas::create');
+		//
 	}
 
 

@@ -21,7 +21,8 @@ class ContactsController extends BaseController {
 	 */
 	public function getCreate()
 	{
-		$this->layout->content = View::make('contacts.create');
+		$c_groups = ContractorGroup::all();
+		$this->layout->content = View::make('contacts.create',compact('c_groups'));
 	}
 
 
@@ -32,24 +33,51 @@ class ContactsController extends BaseController {
 	 */
 	public function postStore()
 	{
-		$input = Input::only('company_name', 'address','first_name','middle_name','last_name','title');
-		$validation = Validator::make($input, Contact::$rules);
+		$input = Input::only('company_name',
+			'number',
+			'street1',
+			'street2',
+			'city',
+			'province',
+			'first_name',
+			'middle_name',
+			'last_name',
+			'title',
+			'c_group');
+		
+		$rules = array('company_name' => 'required',
+			'first_name' => 'required',
+			'middle_name' => 'required',
+			'last_name' => 'required');
+
+		$messages = array(
+			'required' => 'This field is required.');
+
+		$validation = Validator::make($input,$rules,$messages);
 
 		if($validation->passes())
 		{
-			// $user_id = Auth::user()->id;
-			// $contact = Contact::create($input);
-			$contact = new Contact;
-			$contact->created_by =  Auth::user()->id;
+			// dd(Input::all());
+			$contact = new Contact;		
 			$contact->company_name = Str::upper(Input::get('company_name'));
-			$contact->address = Str::upper(Input::get('address'));
+
+			$contact->number = Str::upper(Input::get('number'));
+			$contact->street1 = Str::upper(Input::get('street1'));
+			$contact->street2 = Str::upper(Input::get('street2'));
+			$contact->city = Str::upper(Input::get('city'));
+			$contact->province = Str::upper(Input::get('province'));
+			
 			$contact->first_name = Str::upper(Input::get('first_name'));
 			$contact->middle_name = Str::upper(Input::get('middle_name'));
 			$contact->last_name = Str::upper(Input::get('last_name'));
 			$contact->title = Str::upper(Input::get('title'));
 			$contact->save();
 
+			$contact->contractorGroup()->sync(Input::get('c_group'));
+
+			Session::flash('class', 'alert alert-success');
 			Session::flash('message', 'Successfully created contact!');
+
 			return Redirect::route('contacts.show',array($contact->id));
 		}else
 		{

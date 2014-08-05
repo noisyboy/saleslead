@@ -1,6 +1,6 @@
-<?php namespace App\Modules\Areas\Models;
+<?php 
 
-class Area extends \Eloquent {
+class Area extends Eloquent {
 
 	protected $fillable = array('area');
 	public $timestamps = false;

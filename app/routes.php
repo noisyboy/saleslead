@@ -60,9 +60,25 @@ Route::group(array('prefix' => 'api/v1','before' => 'auth'), function()
 // Route group for authenticated users
 Route::group(array('before' => 'auth'), function()
 {
+
+
 	Route::get('/', 'DashboardController@getIndex');
 
-	// Route::resource('areas', 'AreasController');
+// areas named routes
+	Route::get('areas',  array('as' => 'areas.index', 'uses' => 'AreasController@getIndex'));
+	Route::get('areas/create',  array('as' => 'areas.create', 'uses' => 'AreasController@getCreate'));
+	Route::post('areas/store',  array('as' => 'areas.store', 'uses' => 'AreasController@postStore'));
+	Route::get('areas/{id}',  array('as' => 'areas.show', 'uses' => 'AreasController@getShow'));
+// end
+
+// contacts named routes
+	Route::get('contacts',  array('as' => 'contacts.index', 'uses' => 'ContactsController@getIndex'));
+	Route::get('contacts/create',  array('as' => 'contacts.create', 'uses' => 'ContactsController@getCreate'));
+	Route::post('contacts/store',  array('as' => 'contacts.store', 'uses' => 'ContactsController@postStore'));
+	Route::get('contacts/{id}',  array('as' => 'contacts.show', 'uses' => 'ContactsController@getShow'));
+// end
+
+
 	Route::resource('regions', 'RegionsController');
 	Route::resource('contractorgroups','ContractorGroupsController');
 	Route::resource('projectclassifications','ProjectClassificationsController');
@@ -85,8 +101,8 @@ Route::group(array('before' => 'auth'), function()
 	Route::controller('dashboard','DashboardController');
 
 	Route::controller('projects', 'ProjectsController');
+	
 	Route::controller('roles', 'RolesController');
-	Route::controller('contacts', 'ContactsController');
 	Route::controller('projectcontacts','ProjectContactsController');
 
 });

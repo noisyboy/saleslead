@@ -187,7 +187,7 @@ $(document).ready(function(){
 		LoadCalendarScript(DrawCalendar);
 	}
 
-	DrawFullCalendar();
+	// DrawFullCalendar();
 
 // fetch my contact list
 //--------------------------------------------------------

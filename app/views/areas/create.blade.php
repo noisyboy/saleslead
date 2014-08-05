@@ -9,7 +9,7 @@
 </div>
 @endif
 
-{{ Form::open(array('route' => 'areas.store', 'class' => 'form-horizontal', 'role' => 'form')) }}
+{{ Form::open(array('url' => 'areas/store', 'class' => 'form-horizontal', 'role' => 'form')) }}
 	<div class="form-group">
 		{{ Form::label('area', 'Area',array('class' => 'col-sm-2 control-label')) }}
 		<div class="col-sm-10">

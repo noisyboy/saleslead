@@ -27,7 +27,7 @@
 								{{ HTML::linkAction('ProjectsController@getListing', $project->project_name, $project->id ) }}
 							</td>
 							<td>
-								{{ $project->project_address }}
+								{{ $project->getAddress() }}
 							</td>	
 							<td>
 								{{ $project->pivot->role }}

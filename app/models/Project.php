@@ -83,4 +83,13 @@ class Project extends Eloquent {
 	{
 		return $this->belongsTo('ProjectStatus');
 	}
+
+	public function getAddress()
+	{
+		return $this->attributes['number'] 
+			.' '.$this->attributes['street1']
+			.' '.$this->attributes['street2']
+			.' '.$this->attributes['city']
+			.' '.$this->attributes['province'];
+	}
 }

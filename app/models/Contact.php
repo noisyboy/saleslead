@@ -2,16 +2,26 @@
 
 class Contact extends Eloquent {
 	
-	protected $fillable = array('company_name','address','first_name','middle_name','last_name','title');
+	protected $fillable = array(
+		'company_name',
+		'number',
+		'street1',
+		'street2',
+		'city',
+		'province',
+		'first_name',
+		'middle_name',
+		'last_name',
+		'title',);
 
-	public static $rules = array(
-		'company_name' => 'required',
-		'address' => 'required',
-		'first_name' => 'required',
-		'middle_name' => 'required',
-		'last_name' => 'required',
-		'title' => 'required'
-	);
+	// public static $rules = array(
+	// 	'company_name' => 'required',
+	// 	'address' => 'required',
+	// 	'first_name' => 'required',
+	// 	'middle_name' => 'required',
+	// 	'last_name' => 'required',
+	// 	'title' => 'required'
+	// );
 
 	// auto add of created by
 	public function save(array $options = array())
@@ -43,10 +53,22 @@ class Contact extends Eloquent {
 	    return $this->attributes['first_name'] .' '.$this->attributes['middle_name'].' '.$this->attributes['last_name'];
 	}
 
+	public function getAddress()
+	{
+		return $this->attributes['number'] 
+			.' '.$this->attributes['street1']
+			.' '.$this->attributes['street2']
+			.' '.$this->attributes['city']
+			.' '.$this->attributes['province'];
+	}
+	
 	public function user(){
 		return $this->belongsTo('User');
 	}
 
-	
+
+	public function contractorGroup(){
+		return $this->belongsToMany('ContractorGroup', 'contact_groups');
+	}
 
 }

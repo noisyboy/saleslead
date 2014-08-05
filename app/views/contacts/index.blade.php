@@ -21,7 +21,7 @@
 
 			  	<tr>
 					<td>
-						{{ HTML::linkAction('ContactsController@getShow', $contact->getFullName(), $contact->id ) }}
+						{{ HTML::linkAction('contacts.show', $contact->getFullName(), $contact->id ) }}
 					</td>
 					<td>{{ $contact->title }}</td>
 					<td>{{ $contact->company_name }}</td>

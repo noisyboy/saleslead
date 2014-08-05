@@ -64,7 +64,7 @@
 <div>
 	<address>
 		<strong>{{ $contact->company_name }}</strong><br>
-		{{ $contact->address }}<br>
+		{{ $contact->getAddress() }}<br>
 	</address>
 
 	<address>

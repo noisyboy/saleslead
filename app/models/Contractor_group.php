@@ -15,4 +15,9 @@ class ContractorGroup extends Eloquent {
 	{
 		return $this->hasMany('ProjectContact');
 	}
+
+	public function contacts()
+    {
+        return $this->belongsToMany('Contacts', 'contact_groups');
+    }
 }
