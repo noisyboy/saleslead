@@ -7,8 +7,10 @@
 		"laravel/framework": "4.2.*",
 		"zizaco/entrust": "dev-master",
 		"doctrine/dbal": "2.3.4"
+
 	},
 	"require-dev": {
+		"way/generators": "2.*"
 	},
 	"autoload": {
 		"classmap": [

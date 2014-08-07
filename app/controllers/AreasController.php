@@ -2,16 +2,22 @@
 
 class AreasController extends \BaseController {
 
-	
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function getIndex()
+	public function index()
 	{
-		$areas = Area::all();
+		$filter = Input::get('q');
+		$areas = Area::where('area','LIKE','%'.$filter.'%')
+			->orderBy('area')
+			->paginate(10);
+
+		$query = array_except( Input::query(), Paginator::getPageName());
+		$areas->appends($query);
+
 		$this->layout->content = View::make('areas.index',compact('areas'));
 	}
 
@@ -21,7 +27,7 @@ class AreasController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function getCreate()
+	public function create()
 	{
 		$this->layout->content = View::make('areas.create');
 	}
@@ -32,22 +38,30 @@ class AreasController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function postStore()
+	public function store()
 	{
 		$input = Input::only('area');
-		$validation = Validator::make($input, Area::$rules);
+		
+		$rules = array('area' => 'required|unique:areas');
 
-		if($validation->passes())
-		{
-			Area::create($input);
-			Session::flash('message', 'Successfully created area!');
-			return Redirect::route('areas.index');
-		}else
+		$messages = array(
+			'required' => 'This field is required.',
+			'integer' => 'This field is required.',
+			'min' => 'This field is required.');
+
+		$validator = Validator::make($input,$rules,$messages);
+
+		if ($validator->fails())
 		{
 			return Redirect::route('areas.create')
 				->withInput()
-				->withErrors($validation);
+				->withErrors($validator);
 		}
+
+		Area::create($input);
+		Session::flash('class', 'alert alert-success');
+		Session::flash('message', 'Successfully created area!');
+		return Redirect::route('areas.index');
 	}
 
 
@@ -57,9 +71,10 @@ class AreasController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function getShow($id)
+	public function show($id)
 	{
-		//
+		// return Redirect::route('areas.edit',array($id));
+		$this-> missingMethod();
 	}
 
 
@@ -71,7 +86,8 @@ class AreasController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$area = Area::findOrFail($id);
+		$this->layout->content = View::make('areas.edit', compact('area'));
 	}
 
 
@@ -83,7 +99,29 @@ class AreasController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$area = Area::findOrFail($id);
+
+		$input = Input::only('area');
+		
+		$rules = array('area' => 'required|unique:areas');
+
+		$messages = array(
+			'required' => 'This field is required.',
+			'integer' => 'This field is required.',
+			'min' => 'This field is required.');
+
+		$validator = Validator::make($input,$rules,$messages);
+
+		if ($validator->fails())
+		{
+			return Redirect::back()->withErrors($validator)->withInput();
+		}
+
+		$area->update($input);
+
+		Session::flash('class', 'alert alert-success');
+		Session::flash('message', 'Successfully updated area!');
+		return Redirect::route('areas.index');
 	}
 
 
@@ -95,7 +133,13 @@ class AreasController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$area = Area::findOrFail($id);
+		
+		$area->destroy($id);
+
+		Session::flash('class', 'alert alert-success');
+		Session::flash('message', 'Successfully deleted area!');
+		return Redirect::route('areas.index');
 	}
 
 

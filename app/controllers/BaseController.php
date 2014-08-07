@@ -31,4 +31,5 @@ class BaseController extends Controller {
 	    $this->layout->content =  View::make('errors.404_error');
 	}
 
+	
 }

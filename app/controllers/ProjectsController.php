@@ -101,14 +101,10 @@ class ProjectsController extends BaseController {
 
 		if($validation->passes())
 		{
-			// echo '<pre>';
-			// dd(Input::all());
-			// echo '</pre>';
 
 			$project = new Project;
 
 			$project->project_name = Str::upper(Input::get('project_name'));
-			// $project->project_address = Str::upper(Input::get('project_address'));
 			$project->number = Str::upper(Input::get('number'));
 			$project->street1 = Str::upper(Input::get('street1'));
 			$project->street2 = Str::upper(Input::get('street2'));

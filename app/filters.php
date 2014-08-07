@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 /*
 |--------------------------------------------------------------------------
 | Application & Route Filters
@@ -28,6 +30,14 @@
 //             return Response::view('errors.default', array(), $code);
 //     }
 // });
+
+App::error(function(ModelNotFoundException $e)
+{
+    // return Response::make('Not Found', 404);
+    $contents = View::make('layouts.default');
+    $contents->content =  View::make('errors.404_error');
+    return Response::make($contents, 404);
+});
 
 App::before(function($request)
 {

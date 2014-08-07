@@ -60,16 +60,10 @@ Route::group(array('prefix' => 'api/v1','before' => 'auth'), function()
 // Route group for authenticated users
 Route::group(array('before' => 'auth'), function()
 {
-
-
 	Route::get('/', 'DashboardController@getIndex');
 
-// areas named routes
-	Route::get('areas',  array('as' => 'areas.index', 'uses' => 'AreasController@getIndex'));
-	Route::get('areas/create',  array('as' => 'areas.create', 'uses' => 'AreasController@getCreate'));
-	Route::post('areas/store',  array('as' => 'areas.store', 'uses' => 'AreasController@postStore'));
-	Route::get('areas/{id}',  array('as' => 'areas.show', 'uses' => 'AreasController@getShow'));
-// end
+	Route::resource('areas', 'AreasController');
+	
 
 // contacts named routes
 	Route::get('contacts',  array('as' => 'contacts.index', 'uses' => 'ContactsController@getIndex'));
