@@ -24,7 +24,7 @@
 						@foreach($contact->projects as $project)
 					  	<tr>
 							<td>
-								{{ HTML::linkAction('ProjectsController@getListing', $project->project_name, $project->id ) }}
+								{{ HTML::linkAction('contacts.project', $project->project_name, $project->pivot->id ) }}
 							</td>
 							<td>
 								{{ $project->getAddress() }}

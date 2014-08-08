@@ -142,5 +142,13 @@ class ContactsController extends BaseController {
 		//
 	}
 
+//------------------------------------------------------------
+	public function getProject($id)
+	{
+		$project_contact = ProjectContact::findOrFail($id);
+		$contact_id = $project_contact->contact_id;
+		$project = Project::findOrFail($project_contact->project_id);
 
+		$this->layout->content = View::make('contacts.contact_project',compact('project','contact_id'));
+	}
 }
