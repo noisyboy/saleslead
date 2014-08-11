@@ -57,7 +57,6 @@ class ContactsController extends BaseController {
 
 		if($validation->passes())
 		{
-			// dd(Input::all());
 			$contact = new Contact;		
 			$contact->company_name = Str::upper(Input::get('company_name'));
 
@@ -95,7 +94,6 @@ class ContactsController extends BaseController {
 	 */
 	public function getShow($id)
 	{
-		// $contact = Contact::find($id);
 		$contact = Contact::with('projects')->find($id);
 
 		foreach (PhoneType::select('id', 'phone_type')->orderBy('id','asc')->get() as $phonetype)
@@ -150,5 +148,9 @@ class ContactsController extends BaseController {
 		$project = Project::findOrFail($project_contact->project_id);
 
 		$this->layout->content = View::make('contacts.contact_project',compact('project','contact_id'));
+	}
+
+	public function getCreateTask($id){
+		$this->layout->content = View::make('contacts.create_task');
 	}
 }

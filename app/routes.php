@@ -71,6 +71,8 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('contacts/store',  array('as' => 'contacts.store', 'uses' => 'ContactsController@postStore'));
 	Route::get('contacts/{id}',  array('as' => 'contacts.show', 'uses' => 'ContactsController@getShow'));
 	Route::get('contacts/project/{id}', array('as' => 'contacts.project', 'uses' => 'ContactsController@getProject'));
+	Route::get('contacts/createtask/{id}', array('as' => 'contacts.createtask', 'uses' => 'ContactsController@getCreateTask'));
+
 
 	Route::post('contacts/phones', 'PhonesController@putStore');
 	Route::post('contacts/emails', 'EmailsController@putStore');
